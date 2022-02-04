@@ -5,6 +5,7 @@ import 'package:easy_tax_map/provider/LocationProvider.dart';
 import 'package:easy_tax_map/provider/MainProvider.dart';
 import 'package:easy_tax_map/widgets/CreatedMap.dart';
 import 'package:easy_tax_map/widgets/SearchWidget.dart';
+import 'package:easy_tax_map/widgets/TaxPieChartWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +48,15 @@ class _MainPageState extends State<MainPage> {
                 ),
                 Expanded(
                   flex: 5,
-                  child: CreatedMapWidget(),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: CreatedMapWidget(),
+                      ),
+                      Expanded(child: TaxPieChart())
+                    ],
+                  ),
                 ),
               ],
             ),

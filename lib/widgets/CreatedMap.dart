@@ -23,6 +23,8 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
     final locationProvider = Provider.of<LocationProvider>(context);
     final mainProvider = Provider.of<MainProvider>(context);
     return Container(
+      decoration:
+          BoxDecoration(border: Border.all(width: 1, color: Colors.blue)),
       child: Stack(
         children: [
           FlutterMap(
