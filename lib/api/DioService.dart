@@ -7,7 +7,7 @@ class DioService {
   static Future createDio({String? path}) async {
     try {
       var response = await dio.get<Map>(
-        UrlAPI + path!,
+        UrlAPI+ path!,
         options: Options(
           followRedirects: false,
           validateStatus: (status) => true,

@@ -59,6 +59,7 @@ class _MainPageState extends State<MainPage> {
                       Expanded(child: CreatedChartWidget()),
                       Expanded(
                         flex: width < 1466 ? 2 : 3,
+                        // flex: 2,
                         child: CreatedMapWidget(),
                       ),
                     ],

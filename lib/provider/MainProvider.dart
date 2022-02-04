@@ -46,7 +46,7 @@ class MainProvider with ChangeNotifier {
   List<PieChartModel> pieProvinceChartData = [
     PieChartModel(
         value: 1000000000,
-        title: "60%",
+        title: "50%",
         image: "assets/images/icons8-done.png",
         color: Colors.green.shade900,
         label: "ຈ່າຍແລ້ວ"),

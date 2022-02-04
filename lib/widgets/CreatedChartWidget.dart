@@ -32,7 +32,7 @@ class _CreatedChartWidgetState extends State<CreatedChartWidget> {
                       child: ProvinceDonutChartWidget(
                         pieChartData: Provider.of<MainProvider>(context)
                             .pieProvinceChartData,
-                        centerSpaceRadius: -35,
+                        centerSpaceRadius: -1,
                       ),
                     ),
                     Expanded(
