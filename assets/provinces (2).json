@@ -1,743 +1,743 @@
 [
-    {
-      "code": "01",
-      "province_name": "ນະຄອນຫຼວງວຽງຈັນ",
-      "lat":"17.974855",
-      "lng":"02.630867",
-      "district_list": [
-        {
-          "code": "0101",
-          "district": "ຈັນທະບູລີ",
-          "lat":"17.981179",
-          "lng":"102.608574"
-        },
-        {
-          "code": "0102",
-          "district": "ສີໂຄດຕະບອງ",
-          "lat":"17.999564",
-          "lng":"102.547297"
-        },
-        {
-          "code": "0104",
-          "district": "ສີສັດຕະນາກ",
-          "lat":"17.913725",
-          "lng":"102.626112"
-        },
-        {
-          "code": "0108",
-          "district": "ສັງທອງ",
-          "lat":"18.701483192996026",
-          "lng":"102.21919485400058"
-        },
-        {
-          "code": "0103",
-          "district": "ໄຊເສດຖາ",
-          "lat":"17.99036511621997",
-          "lng":"102.63261805724113"
-        },
-        {
-          "code": "0106",
-          "district": "ໄຊທານີ",
-          "lat":"18.04405273166597",
-          "lng":"102.63387133898257"
-        },
-        {
-          "code": "0105",
-          "district": "ນາໄຊທອງ",
-          "lat":"18.08731734561543",
-          "lng":"102.52485252616604"
-        },
-        {
-          "code": "0109",
-          "district": "ປາກງື່ມ",
-          "lat":"18.06744867789096",
-          "lng":"102.90215801575496"
-        },
-        {
-          "code": "0107",
-          "district": "ຫາດຊາຍຟອງ",
-          "lat":"17.996569134891963",
-          "lng":"102.66422688231795"
-        }
-      ]
-    },
-    {
-      "code": "02",
-      "province_name": "ຜົ້ງສາລີ",
-      "lat":"21.6836",
-      "lng":"102.1053",
-      "district_list": [
-        {
-          "code": "0203",
-          "district": "ຂວາ"
-        },
-        {
-          "code": "0204",
-          "district": "ສຳພັນ"
-        },
-        {
-          "code": "0206",
-          "district": "ຍອດອູ"
-        },
-        {
-          "code": "0207",
-          "district": "ບູນໃຕ້"
-        },
-        {
-          "code": "0205",
-          "district": "ບູນເໜືອ"
-        },
-        {
-          "code": "0201",
-          "district": "ຜົ້ງສາລີ"
-        },
-        {
-          "code": "0202",
-          "district": "ໃໝ່"
-        }
-      ]
-    },
-    {
-      "code": "03",
-      "province_name": "ຫຼວງນ້ຳທາ",
-      "lat":"20.9500",
-      "lng":"101.4167",
-      "district_list": [
-        {
-          "code": "0302",
-          "district": "ສິງ"
-        },
-        {
-          "code": "0305",
-          "district": "ນາແລ"
-        },
-        {
-          "code": "0303",
-          "district": "ລອງ"
-        },
-        {
-          "code": "0304",
-          "district": "ວຽງພູຄາ"
-        },
-        {
-          "code": "0301",
-          "district": "ຫຼວງນ້ຳທາ"
-        }
-      ]
-    },
-    {
-      "code": "04",
-      "province_name": "ອຸດົມໄຊ",
-      "lat":"20.6922",
-      "lng":"101.9847",
-      "district_list": [
-        {
-          "code": "0404",
-          "district": "ງາ"
-        },
-        {
-          "code": "0401",
-          "district": "ໄຊ"
-        },
-        {
-          "code": "0403",
-          "district": "ນາໝໍ້"
-        },
-        {
-          "code": "0405",
-          "district": "ແບງ"
-        },
-        {
-          "code": "0407",
-          "district": "ປາກແບງ"
-        },
-        {
-          "code": "0406",
-          "district": "ຮຸນ"
-        },
-        {
-          "code": "0402",
-          "district": "ຫລາ"
-        }
-      ]
-    },
-    {
-      "code": "05",
-      "province_name": "ບໍ່ແກ້ວ",
-      "lat":"20.2693286",
-      "lng":"100.4142178",
-      "district_list": [
-        {
-          "code": "0502",
-          "district": "ຕົ້ນເຜິ້ງ"
-        },
-        {
-          "code": "0505",
-          "district": "ປາກທາ"
-        },
-        {
-          "code": "0504",
-          "district": "ຜາອຸດົມ"
-        },
-        {
-          "code": "0503",
-          "district": "ເມິງ"
-        },
-        {
-          "code": "0501",
-          "district": "ຫ້ວຍຊາຍ"
-        }
-      ]
-    },
-    {
-      "code": "06",
-      "province_name": "ຫຼວງພະບາງ",
-      "lat":"19.8931",
-      "lng":"102.1381",
-      "district_list": [
-        {
-          "code": "0606",
-          "district": "ງອຍ"
-        },
-        {
-          "code": "0609",
-          "district": "ຈອມເພັດ"
-        },
-        {
-          "code": "0602",
-          "district": "ຊຽງເງິນ"
-        },
-        {
-          "code": "0603",
-          "district": "ນານ"
-        },
-        {
-          "code": "0605",
-          "district": "ນ້ຳບາກ"
-        },
-        {
-          "code": "0607",
-          "district": "ປາກແຊງ"
-        },
-        {
-          "code": "0604",
-          "district": "ປາກອູ"
-        },
+  {
+    "code": "01",
+    "province_name": "ນະຄອນຫຼວງວຽງຈັນ",
+    "lat": "17.974855",
+    "lng": "02.630867",
+    "district_list": [
+      {
+        "code": "0101",
+        "district": "ຈັນທະບູລີ",
+        "lat": "17.981179",
+        "lng": "102.608574"
+      },
+      {
+        "code": "0102",
+        "district": "ສີໂຄດຕະບອງ",
+        "lat": "17.999564",
+        "lng": "102.547297"
+      },
+      {
+        "code": "0104",
+        "district": "ສີສັດຕະນາກ",
+        "lat": "17.913725",
+        "lng": "102.626112"
+      },
+      {
+        "code": "0108",
+        "district": "ສັງທອງ",
+        "lat": "18.701483192996026",
+        "lng": "102.21919485400058"
+      },
+      {
+        "code": "0103",
+        "district": "ໄຊເສດຖາ",
+        "lat": "17.99036511621997",
+        "lng": "102.63261805724113"
+      },
+      {
+        "code": "0106",
+        "district": "ໄຊທານີ",
+        "lat": "18.04405273166597",
+        "lng": "102.63387133898257"
+      },
+      {
+        "code": "0105",
+        "district": "ນາໄຊທອງ",
+        "lat": "18.08731734561543",
+        "lng": "102.52485252616604"
+      },
+      {
+        "code": "0109",
+        "district": "ປາກງື່ມ",
+        "lat": "18.06744867789096",
+        "lng": "102.90215801575496"
+      },
+      {
+        "code": "0107",
+        "district": "ຫາດຊາຍຟອງ",
+        "lat": "17.996569134891963",
+        "lng": "102.66422688231795"
+      }
+    ]
+  },
+  {
+    "code": "02",
+    "province_name": "ຜົ້ງສາລີ",
+    "lat": "21.6836",
+    "lng": "102.1053",
+    "district_list": [
+      {
+        "code": "0203",
+        "district": "ຂວາ"
+      },
+      {
+        "code": "0204",
+        "district": "ສຳພັນ"
+      },
+      {
+        "code": "0206",
+        "district": "ຍອດອູ"
+      },
+      {
+        "code": "0207",
+        "district": "ບູນໃຕ້"
+      },
+      {
+        "code": "0205",
+        "district": "ບູນເໜືອ"
+      },
+      {
+        "code": "0201",
+        "district": "ຜົ້ງສາລີ"
+      },
+      {
+        "code": "0202",
+        "district": "ໃໝ່"
+      }
+    ]
+  },
+  {
+    "code": "03",
+    "province_name": "ຫຼວງນ້ຳທາ",
+    "lat": "20.9500",
+    "lng": "101.4167",
+    "district_list": [
+      {
+        "code": "0302",
+        "district": "ສິງ"
+      },
+      {
+        "code": "0305",
+        "district": "ນາແລ"
+      },
+      {
+        "code": "0303",
+        "district": "ລອງ"
+      },
+      {
+        "code": "0304",
+        "district": "ວຽງພູຄາ"
+      },
+      {
+        "code": "0301",
+        "district": "ຫຼວງນ້ຳທາ"
+      }
+    ]
+  },
+  {
+    "code": "04",
+    "province_name": "ອຸດົມໄຊ",
+    "lat": "20.6922",
+    "lng": "101.9847",
+    "district_list": [
+      {
+        "code": "0404",
+        "district": "ງາ"
+      },
+      {
+        "code": "0401",
+        "district": "ໄຊ"
+      },
+      {
+        "code": "0403",
+        "district": "ນາໝໍ້"
+      },
+      {
+        "code": "0405",
+        "district": "ແບງ"
+      },
+      {
+        "code": "0407",
+        "district": "ປາກແບງ"
+      },
+      {
+        "code": "0406",
+        "district": "ຮຸນ"
+      },
+      {
+        "code": "0402",
+        "district": "ຫລາ"
+      }
+    ]
+  },
+  {
+    "code": "05",
+    "province_name": "ບໍ່ແກ້ວ",
+    "lat": "20.2693286",
+    "lng": "100.4142178",
+    "district_list": [
+      {
+        "code": "0502",
+        "district": "ຕົ້ນເຜິ້ງ"
+      },
+      {
+        "code": "0505",
+        "district": "ປາກທາ"
+      },
+      {
+        "code": "0504",
+        "district": "ຜາອຸດົມ"
+      },
+      {
+        "code": "0503",
+        "district": "ເມິງ"
+      },
+      {
+        "code": "0501",
+        "district": "ຫ້ວຍຊາຍ"
+      }
+    ]
+  },
+  {
+    "code": "06",
+    "province_name": "ຫຼວງພະບາງ",
+    "lat": "19.8931",
+    "lng": "102.1381",
+    "district_list": [
+      {
+        "code": "0606",
+        "district": "ງອຍ"
+      },
+      {
+        "code": "0609",
+        "district": "ຈອມເພັດ"
+      },
+      {
+        "code": "0602",
+        "district": "ຊຽງເງິນ"
+      },
+      {
+        "code": "0603",
+        "district": "ນານ"
+      },
+      {
+        "code": "0605",
+        "district": "ນ້ຳບາກ"
+      },
+      {
+        "code": "0607",
+        "district": "ປາກແຊງ"
+      },
+      {
+        "code": "0604",
+        "district": "ປາກອູ"
+      },
+      {
+        "code": "0608",
+        "district": "ໂພນໄຊ"
+      },
+      {
+        "code": "0611",
+        "district": "ພູຄຸນ"
+      },
+      {
+        "code": "0612",
+        "district": "ໂພນທອງ"
+      },
+      {
+        "code": "0610",
+        "district": "ວຽງຄຳ"
+      },
+      {
+        "code": "0601",
+        "district": "ຫຼວງພະບາງ"
+      }
+    ]
+  },
+  {
+    "code": "07",
+    "province_name": "ຫົວພັນ",
+    "lat": "20.4133",
+    "lng": "104.0480",
+    "district_list": [
+      {
+        "code": "0709",
+        "district": "ກວັນ"
+      },
+      {
+        "code": "0707",
+        "district": "ສົບເບົາ"
+      },
+      {
+        "code": "0710",
+        "district": "ຊອນ"
+      },
+      {
+        "code": "0702",
+        "district": "ຊຽງຄໍ້"
+      },
+      {
+        "code": "0706",
+        "district": "ຊຳໃຕ້"
+      },
+      {
+        "code": "0701",
+        "district": "ຊຳເໜືອ"
+      },
+      {
+        "code": "0704",
+        "district": "ວຽງໄຊ"
+      },
+      {
+        "code": "0705",
+        "district": "ຫົວເມືອງ"
+      },
+      {
+        "code": "0708",
+        "district": "ແອດ"
+      },
+      {
+        "code": "0703",
+        "district": "ຮ້ຽມ"
+      }
+    ]
+  },
+  {
+    "code": "08",
+    "province_name": "ໄຊຍະບູລີ",
+    "lat": "19.2576",
+    "lng": "101.7103",
+    "district_list": [
+      {
+        "code": "0808",
+        "district": "ແກ່ນທ້າວ"
+      },
+      {
+        "code": "0802",
+        "district": "ຄອບ"
+      },
+      {
+        "code": "0804",
+        "district": "ເງິນ"
+      },
+      {
+        "code": "0801",
+        "district": "ໄຊຍະບູລີ"
+      },
+      {
+        "code": "0811",
+        "district": "ໄຊຊະຖານ"
+      },
+      {
+        "code": "0805",
+        "district": "ຊຽງຮ່ອນ"
+      },
+      {
+        "code": "0810",
+        "district": "ທົ່ງມີໄຊ"
+      },
+      {
+        "code": "0809",
+        "district": "ບໍ່ແຕນ"
+      },
+      {
+        "code": "0807",
+        "district": "ປາກລາຍ"
+      },
+      {
+        "code": "0806",
+        "district": "ພຽງ"
+      },
+      {
+        "code": "0803",
+        "district": "ຫົງສາ"
+      }
+    ]
+  },
+  {
+    "code": "09",
+    "province_name": "ຊຽງຂວາງ",
+    "lat": "19.4500",
+    "lng": "103.2000",
+    "district_list": [
+      {
+        "code": "0902",
+        "district": "ຄຳ"
+      },
+      {
+        "code": "0904",
+        "district": "ຄຸນ"
+      },
+      {
+        "code": "0901",
+        "district": "ແປກ"
+      },
+      {
+        "code": "0907",
+        "district": "ຜາໄຊ"
+      },
+      {
+        "code": "0906",
+        "district": "ພູກູດ"
+      },
+      {
+        "code": "0903",
+        "district": "ໜອງແຮດ"
+      },
+      {
+        "code": "0905",
+        "district": "ໝອກ"
+      }
+    ]
+  },
+  {
+    "code": "10",
+    "province_name": "ວຽງຈັນ",
+    "lat": "18.4953",
+    "lng": "102.4153",
+    "district_list": [
+      {
+        "code": "1004",
+        "district": "ກາສີ"
+      },
+      {
+        "code": "1003",
+        "district": "ແກ້ວອຸດົມ"
+      },
+      {
+        "code": "1007",
+        "district": "ຊະນະຄາມ"
+      },
+      {
+        "code": "1002",
+        "district": "ທຸລະຄົມ"
+      },
+      {
+        "code": "1001",
+        "district": "ໂພນໂຮງ"
+      },
+      {
+        "code": "1006",
+        "district": "ເຟືອງ"
+      },
+      {
+        "code": "1005",
+        "district": "ວັງວຽງ"
+      },
+      {
+        "code": "1008",
+        "district": "ແມດ"
+      },
+      {
+        "code": "1009",
+        "district": "ວຽງຄຳ"
+      },
+      {
+        "code": "1010",
+        "district": "ຫີນເຫີບ"
+      },
+      {
+        "code": "1011",
+        "district": "ໝືນ"
+      }
+    ]
+  },
+  {
+    "code": "11",
+    "province_name": "ບໍລິຄຳໄຊ",
+    "district_list": [
+      {
+        "code": "1105",
+        "district": "ຄຳເກີດ"
+      },
+      {
+        "code": "1107",
+        "district": "ໄຊຈຳພອນ"
+      },
+      {
+        "code": "1102",
+        "district": "ທ່າພະບາດ"
+      },
+      {
+        "code": "1104",
+        "district": "ບໍລິຄັນ"
+      },
+      {
+        "code": "1103",
+        "district": "ປາກກະດິງ"
+      },
+      {
+        "code": "1101",
+        "district": "ປາກຊັນ"
+      },
+      {
+        "code": "1106",
+        "district": "ວຽງທອງ"
+      }
+    ]
+  },
+  {
+    "code": "12",
+    "province_name": "ຄຳມ່ວນ",
+    "district_list": [
+      {
+        "code": "1210",
+        "district": "ຄູນຄຳ"
+      },
+      {
+        "code": "1209",
+        "district": "ໄຊບົວທອງ"
+      },
+      {
+        "code": "1208",
+        "district": "ເຊບັ້ງໄຟ"
+      },
+      {
+        "code": "1205",
+        "district": "ຍົມມະລາດ"
+      },
+      {
+        "code": "1201",
+        "district": "ທ່າແຂກ"
+      },
+      {
+        "code": "1207",
+        "district": "ນາກາຍ"
+      },
+      {
+        "code": "1206",
+        "district": "ບົວລະພາ"
+      },
+      {
+        "code": "1202",
+        "district": "ມະຫາໄຊ"
+      },
+      {
+        "code": "1204",
+        "district": "ຫີນບູນ"
+      },
+      {
+        "code": "1203",
+        "district": "ໜອງບົກ"
+      }
+    ]
+  },
+  {
+    "code": "13",
+    "province_name": "ສະຫວັນນະເຂດ",
+    "district_list": [
+      {
+        "code": "1301",
+        "district": "ໄກສອນ ພົມວິຫານ"
+      },
+      {
+        "code": "1309",
+        "district": "ຈຳພອນ"
+      },
+      {
+        "code": "1308",
+        "district": "ສອງຄອນ"
+      },
+      {
+        "code": "1306",
+        "district": "ນອງ"
+      },
+      {
+        "code": "1307",
+        "district": "ທ່າປາງທອງ"
+      },
+      {
+        "code": "1305",
+        "district": "ເຊໂປນ"
+      },
+      {
+        "code": "1314",
+        "district": "ໄຊພູທອງ"
+      },
+      {
+        "code": "1311",
+        "district": "ໄຊບູລີ"
+      },
+      {
+        "code": "1310",
+        "district": "ຊົນບູລິ"
+      },
+      {
+        "code": "1304",
+        "district": "ພິນ"
+      },
+      {
+        "code": "1315",
+        "district": "ພະລານໄຊ"
+      },
+      {
+        "code": "1312",
+        "district": "ວິລະບູລີ"
+      },
+      {
+        "code": "1313",
+        "district": "ອາດສະພອນ"
+      },
+      {
+        "code": "1303",
+        "district": "ອາດສະພັງທອງ"
+      },
+      {
+        "code": "1302",
+        "district": "ອຸດົມພອນ"
+      }
+    ]
+  },
+  {
+    "code": "14",
+    "province_name": "ສາລະວັນ",
+    "district_list": [
+      {
+        "code": "1406",
+        "district": "ຄົງເຊໂດນ"
+      },
+      {
+        "code": "1408",
+        "district": "ສະມ້ວຍ"
+      },
+      {
+        "code": "1401",
+        "district": "ສາລະວັນ"
+      },
+      {
+        "code": "1402",
+        "district": "ຕາໂອ້ຍ"
+      },
+      {
+        "code": "1403",
+        "district": "ຕຸ້ມລານ"
+      },
+      {
+        "code": "1404",
+        "district": "ລະຄອນເພັງ"
+      },
+      {
+        "code": "1407",
+        "district": "ເລົ່າງາມ"
+      },
+      {
+        "code": "1405",
+        "district": "ວາປີ"
+      }
+    ]
+  },
+  {
+    "code": "15",
+    "province_name": "ເຊກອງ",
+    "district_list": [
+      {
+        "code": "1502",
+        "district": "ກະລືມ"
+      },
+      {
+        "code": "1503",
+        "district": "ດາກຈຶງ"
+      },
+      {
+        "code": "1504",
+        "district": "ທ່າແຕງ"
+      },
+      {
+        "code": "1501",
+        "district": "ລະມານ"
+      }
+    ]
+  },
+  {
+    "code": "16",
+    "province_name": "ຈຳປາສັກ",
+    "district_list": [
+      {
+        "code": "1610",
+        "district": "ໂຂງ"
+      },
+      {
+        "code": "1607",
+        "district": "ຈຳປາສັກ"
+      },
+      {
+        "code": "1608",
+        "district": "ສຸຂຸມາ"
+      },
+      {
+        "code": "1602",
+        "district": "ຊະນະສົມບູນ"
+      },
+      {
+        "code": "1603",
+        "district": "ບາຈຽງຈະເລີນສຸກ"
+      },
+      {
+        "code": "1601",
+        "district": "ປາເຊ"
+      },
+      {
+        "code": "1604",
+        "district": "ປາກຊ່ອງ"
+      },
+      {
+        "code": "1605",
+        "district": "ປະທຸມພອນ"
+      },
+      {
+        "code": "1606",
+        "district": "ໂພນທອງ"
+      },
+      {
+        "code": "1609",
+        "district": "ມຸນລະປະໂມກ"
+      }
+    ]
+  },
+  {
+    "code": "17",
+    "province_name": "ອັດຕະປື",
+    "district_list": [
+      {
+        "code": "1702",
+        "district": "ສາມະຄີໄຊ"
+      },
+      {
+        "code": "1704",
+        "district": "ສານໄຊ"
+      },
+      {
+        "code": "1703",
+        "district": "ສະໝານໄຊ"
+      },
+      {
+        "code": "1701",
+        "district": "ໄຊເສດຖາ"
+      },
+      {
+        "code": "1705",
+        "district": "ພູວົງ"
+      }
+    ]
+  },
+  {
+    "code": "18",
+    "province_name": "ໄຊສົມບູນ",
+    "district_list": [
+      {
+        "code": "1802",
+        "district": "ທ່າໂທມ"
+      },
+      {
+        "code": "1803",
+        "district": "ລ້ອງແຈ້ງ"
+      },
+      {
+        "code": "1805",
+        "district": "ລ້ອງຊານ"
+      },
+      {
+        "code": "1801",
+        "district": "ອານຸວົງ"
+      },
+      {
+        "code": "1804",
+        "district": "ຮົ່ມ"
+      }
+    ]
+  }
+]
   
-        {
-          "code": "0608",
-          "district": "ໂພນໄຊ"
-        },
-        {
-          "code": "0611",
-          "district": "ພູຄຸນ"
-        },
-        {
-          "code": "0612",
-          "district": "ໂພນທອງ"
-        },
-        {
-          "code": "0610",
-          "district": "ວຽງຄຳ"
-        },
-        {
-          "code": "0601",
-          "district": "ຫຼວງພະບາງ"
-        }
-      ]
-    },
-    {
-      "code": "07",
-      "province_name": "ຫົວພັນ",
-      "lat":"20.4133",
-      "lng":"104.0480",
-      "district_list": [
-        {
-          "code": "0709",
-          "district": "ກວັນ"
-        },
-        {
-          "code": "0707",
-          "district": "ສົບເບົາ"
-        },
-        {
-          "code": "0710",
-          "district": "ຊອນ"
-        },
-        {
-          "code": "0702",
-          "district": "ຊຽງຄໍ້"
-        },
-        {
-          "code": "0706",
-          "district": "ຊຳໃຕ້"
-        },
-        {
-          "code": "0701",
-          "district": "ຊຳເໜືອ"
-        },
-        {
-          "code": "0704",
-          "district": "ວຽງໄຊ"
-        },
-        {
-          "code": "0705",
-          "district": "ຫົວເມືອງ"
-        },
-        {
-          "code": "0708",
-          "district": "ແອດ"
-        },
-        {
-          "code": "0703",
-          "district": "ຮ້ຽມ"
-        }
-      ]
-    },
-    {
-      "code": "08",
-      "province_name": "ໄຊຍະບູລີ",
-      "lat":"19.2576",
-      "lng":"101.7103",
-      "district_list": [
-        {
-          "code": "0808",
-          "district": "ແກ່ນທ້າວ"
-        },
-        {
-          "code": "0802",
-          "district": "ຄອບ"
-        },
-        {
-          "code": "0804",
-          "district": "ເງິນ"
-        },
-        {
-          "code": "0801",
-          "district": "ໄຊຍະບູລີ"
-        },
-        {
-          "code": "0811",
-          "district": "ໄຊຊະຖານ"
-        },
-        {
-          "code": "0805",
-          "district": "ຊຽງຮ່ອນ"
-        },
-        {
-          "code": "0810",
-          "district": "ທົ່ງມີໄຊ"
-        },
-        {
-          "code": "0809",
-          "district": "ບໍ່ແຕນ"
-        },
-        {
-          "code": "0807",
-          "district": "ປາກລາຍ"
-        },
-        {
-          "code": "0806",
-          "district": "ພຽງ"
-        },
-        {
-          "code": "0803",
-          "district": "ຫົງສາ"
-        }
-      ]
-    },
-    {
-      "code": "09",
-      "province_name": "ຊຽງຂວາງ",
-      "lat":"19.4500",
-      "lng":"103.2000",
-      "district_list": [
-        {
-          "code": "0902",
-          "district": "ຄຳ"
-        },
-        {
-          "code": "0904",
-          "district": "ຄຸນ"
-        },
-        {
-          "code": "0901",
-          "district": "ແປກ"
-        },
-        {
-          "code": "0907",
-          "district": "ຜາໄຊ"
-        },
-        {
-          "code": "0906",
-          "district": "ພູກູດ"
-        },
-        {
-          "code": "0903",
-          "district": "ໜອງແຮດ"
-        },
-        {
-          "code": "0905",
-          "district": "ໝອກ"
-        }
-      ]
-    },
-    {
-      "code": "10",
-      "province_name": "ວຽງຈັນ",
-      "lat":"18.4953",
-      "lng":"102.4153",
-      "district_list": [
-        {
-          "code": "1004",
-          "district": "ກາສີ"
-        },
-        {
-          "code": "1003",
-          "district": "ແກ້ວອຸດົມ"
-        },
-        {
-          "code": "1007",
-          "district": "ຊະນະຄາມ"
-        },
-        {
-          "code": "1002",
-          "district": "ທຸລະຄົມ"
-        },
-        {
-          "code": "1001",
-          "district": "ໂພນໂຮງ"
-        },
-        {
-          "code": "1006",
-          "district": "ເຟືອງ"
-        },
-        {
-          "code": "1005",
-          "district": "ວັງວຽງ"
-        },
-        {
-          "code": "1008",
-          "district": "ແມດ"
-        },
-        {
-          "code": "1009",
-          "district": "ວຽງຄຳ"
-        },
-        {
-          "code": "1010",
-          "district": "ຫີນເຫີບ"
-        },
-        {
-          "code": "1011",
-          "district": "ໝືນ"
-        }
-      ]
-    },
-    {
-      "code": "11",
-      "province_name": "ບໍລິຄຳໄຊ",
-      "district_list": [
-        {
-          "code": "1105",
-          "district": "ຄຳເກີດ"
-        },
-        {
-          "code": "1107",
-          "district": "ໄຊຈຳພອນ"
-        },
-        {
-          "code": "1102",
-          "district": "ທ່າພະບາດ"
-        },
-        {
-          "code": "1104",
-          "district": "ບໍລິຄັນ"
-        },
-        {
-          "code": "1103",
-          "district": "ປາກກະດິງ"
-        },
-        {
-          "code": "1101",
-          "district": "ປາກຊັນ"
-        },
-        {
-          "code": "1106",
-          "district": "ວຽງທອງ"
-        }
-      ]
-    },
-    {
-      "code": "12",
-      "province_name": "ຄຳມ່ວນ",
-      "district_list": [
-        {
-          "code": "1210",
-          "district": "ຄູນຄຳ"
-        },
-        {
-          "code": "1209",
-          "district": "ໄຊບົວທອງ"
-        },
-        {
-          "code": "1208",
-          "district": "ເຊບັ້ງໄຟ"
-        },
-        {
-          "code": "1205",
-          "district": "ຍົມມະລາດ"
-        },
-        {
-          "code": "1201",
-          "district": "ທ່າແຂກ"
-        },
-        {
-          "code": "1207",
-          "district": "ນາກາຍ"
-        },
-        {
-          "code": "1206",
-          "district": "ບົວລະພາ"
-        },
-        {
-          "code": "1202",
-          "district": "ມະຫາໄຊ"
-        },
-        {
-          "code": "1204",
-          "district": "ຫີນບູນ"
-        },
-        {
-          "code": "1203",
-          "district": "ໜອງບົກ"
-        }
-      ]
-    },
-    {
-      "code": "13",
-      "province_name": "ສະຫວັນນະເຂດ",
-      "district_list": [
-        {
-          "code": "1301",
-          "district": "ໄກສອນ ພົມວິຫານ"
-        },
-        {
-          "code": "1309",
-          "district": "ຈຳພອນ"
-        },
-        {
-          "code": "1308",
-          "district": "ສອງຄອນ"
-        },
-        {
-          "code": "1306",
-          "district": "ນອງ"
-        },
-        {
-          "code": "1307",
-          "district": "ທ່າປາງທອງ"
-        },
-        {
-          "code": "1305",
-          "district": "ເຊໂປນ"
-        },
-        {
-          "code": "1314",
-          "district": "ໄຊພູທອງ"
-        },
-        {
-          "code": "1311",
-          "district": "ໄຊບູລີ"
-        },
-        {
-          "code": "1310",
-          "district": "ຊົນບູລິ"
-        },
-        {
-          "code": "1304",
-          "district": "ພິນ"
-        },
-        {
-          "code": "1315",
-          "district": "ພະລານໄຊ"
-        },
-        {
-          "code": "1312",
-          "district": "ວິລະບູລີ"
-        },
-        {
-          "code": "1313",
-          "district": "ອາດສະພອນ"
-        },
-        {
-          "code": "1303",
-          "district": "ອາດສະພັງທອງ"
-        },
-        {
-          "code": "1302",
-          "district": "ອຸດົມພອນ"
-        }
-      ]
-    },
-    {
-      "code": "14",
-      "province_name": "ສາລະວັນ",
-      "district_list": [
-        {
-          "code": "1406",
-          "district": "ຄົງເຊໂດນ"
-        },
-        {
-          "code": "1408",
-          "district": "ສະມ້ວຍ"
-        },
-        {
-          "code": "1401",
-          "district": "ສາລະວັນ"
-        },
-        {
-          "code": "1402",
-          "district": "ຕາໂອ້ຍ"
-        },
-        {
-          "code": "1403",
-          "district": "ຕຸ້ມລານ"
-        },
-        {
-          "code": "1404",
-          "district": "ລະຄອນເພັງ"
-        },
-        {
-          "code": "1407",
-          "district": "ເລົ່າງາມ"
-        },
-        {
-          "code": "1405",
-          "district": "ວາປີ"
-        }
-      ]
-    },
-    {
-      "code": "15",
-      "province_name": "ເຊກອງ",
-      "district_list": [
-        {
-          "code": "1502",
-          "district": "ກະລືມ"
-        },
-        {
-          "code": "1503",
-          "district": "ດາກຈຶງ"
-        },
-        {
-          "code": "1504",
-          "district": "ທ່າແຕງ"
-        },
-        {
-          "code": "1501",
-          "district": "ລະມານ"
-        }
-      ]
-    },
-    {
-      "code": "16",
-      "province_name": "ຈຳປາສັກ",
-      "district_list": [
-        {
-          "code": "1610",
-          "district": "ໂຂງ"
-        },
-        {
-          "code": "1607",
-          "district": "ຈຳປາສັກ"
-        },
-        {
-          "code": "1608",
-          "district": "ສຸຂຸມາ"
-        },
-        {
-          "code": "1602",
-          "district": "ຊະນະສົມບູນ"
-        },
-        {
-          "code": "1603",
-          "district": "ບາຈຽງຈະເລີນສຸກ"
-        },
-        {
-          "code": "1601",
-          "district": "ປາເຊ"
-        },
-        {
-          "code": "1604",
-          "district": "ປາກຊ່ອງ"
-        },
-        {
-          "code": "1605",
-          "district": "ປະທຸມພອນ"
-        },
-        {
-          "code": "1606",
-          "district": "ໂພນທອງ"
-        },
-  
-        {
-          "code": "1609",
-          "district": "ມຸນລະປະໂມກ"
-        }
-      ]
-    },
-    {
-      "code": "17",
-      "province_name": "ອັດຕະປື",
-      "district_list": [
-        {
-          "code": "1702",
-          "district": "ສາມະຄີໄຊ"
-        },
-        {
-          "code": "1704",
-          "district": "ສານໄຊ"
-        },
-        {
-          "code": "1703",
-          "district": "ສະໝານໄຊ"
-        },
-        {
-          "code": "1701",
-          "district": "ໄຊເສດຖາ"
-        },
-        {
-          "code": "1705",
-          "district": "ພູວົງ"
-        }
-      ]
-    },
-    {
-      "code": "18",
-      "province_name": "ໄຊສົມບູນ",
-      "district_list": [
-        {
-          "code": "1802",
-          "district": "ທ່າໂທມ"
-        },
-        {
-          "code": "1803",
-          "district": "ລ້ອງແຈ້ງ"
-        },
-        {
-          "code": "1805",
-          "district": "ລ້ອງຊານ"
-        },
-        {
-          "code": "1801",
-          "district": "ອານຸວົງ"
-        },
-        {
-          "code": "1804",
-          "district": "ຮົ່ມ"
-        }
-      ]
-    }
-  ]
-  
+
+ 
