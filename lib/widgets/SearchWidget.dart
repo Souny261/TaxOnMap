@@ -28,6 +28,8 @@ class _SearchWidgetState extends State<SearchWidget> {
         ],
       ),
       body: Container(
+        decoration: BoxDecoration(
+            border: Border(right: BorderSide(width: 1, color: Colors.blue))),
         padding: EdgeInsets.all(8),
         child: ListView.builder(
             scrollDirection: Axis.vertical,
@@ -62,18 +64,60 @@ class _SearchWidgetState extends State<SearchWidget> {
                             mainProvider.moveMap(e.lat!, e.lng!);
                           },
                           title: Text(e.district!),
-                          subtitle: Text(
-                            e.code! == "0101"
-                                ? mainProvider.taxData!.data!.length.toString()
-                                : "0",
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
+                          subtitle: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.circle,
+                                    color: Colors.red,
+                                    size: 10,
+                                  ),
+                                  Text(e.code! == "0101"
+                                      ? "${mainProvider.taxData!.data!.where((element) => element.statusCode == 0).length.toString()}"
+                                      : "0")
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.circle,
+                                    color: Colors.yellow,
+                                    size: 10,
+                                  ),
+                                  Text(e.code! == "0101"
+                                      ? "${mainProvider.taxData!.data!.where((element) => element.statusCode == 1).length.toString()}"
+                                      : "0")
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.circle,
+                                    color: Colors.green,
+                                    size: 10,
+                                  ),
+                                  Text(e.code! == "0101"
+                                      ? "${mainProvider.taxData!.data!.where((element) => element.statusCode == 2).length.toString()}"
+                                      : "0")
+                                ],
+                              )
+                            ],
                           ),
+                          // subtitle: Text(
+                          //   e.code! == "0101"
+                          //       ? "${mainProvider.taxData!.data!.length.toString()}"
+                          //       : "0",
+                          //   style: TextStyle(
+                          //       fontSize: 12,
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.blue),
+                          // ),
                           trailing: Icon(
                             Icons.arrow_forward_ios,
                             color: Colors.blue,
+                            size: 15,
                           ),
                         ),
                       )).toList(),

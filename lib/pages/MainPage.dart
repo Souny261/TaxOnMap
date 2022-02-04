@@ -5,7 +5,7 @@ import 'package:easy_tax_map/provider/LocationProvider.dart';
 import 'package:easy_tax_map/provider/MainProvider.dart';
 import 'package:easy_tax_map/widgets/CreatedMap.dart';
 import 'package:easy_tax_map/widgets/SearchWidget.dart';
-import 'package:easy_tax_map/widgets/TaxPieChartWidget.dart';
+import 'package:easy_tax_map/widgets/CreatedChartWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +23,9 @@ class _MainPageState extends State<MainPage> {
     final locationProvider =
         Provider.of<LocationProvider>(context, listen: false);
     final mainProvider = Provider.of<MainProvider>(context, listen: false);
-    mainProvider.loadData();
+    mainProvider
+        .loadData()
+        .whenComplete(() => mainProvider.setInitialPieData());
     mainProvider.loadProvinceData();
     // mainProvider.setMapController();
     locationProvider.getCurentLocation().whenComplete(() {
@@ -36,8 +38,10 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     final locationProvider = Provider.of<LocationProvider>(context);
+    final mainProvider = Provider.of<MainProvider>(context);
     return Scaffold(
-      body: locationProvider.latLngPosition == null
+      body: locationProvider.latLngPosition == null ||
+              mainProvider.taxData == null
           ? Center(
               child: LoaderTwo(),
             )
@@ -50,11 +54,11 @@ class _MainPageState extends State<MainPage> {
                   flex: 5,
                   child: Column(
                     children: [
+                      Expanded(child: CreatedChartWidget()),
                       Expanded(
-                        flex: 2,
+                        flex: 3,
                         child: CreatedMapWidget(),
                       ),
-                      Expanded(child: TaxPieChart())
                     ],
                   ),
                 ),

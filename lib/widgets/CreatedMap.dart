@@ -7,6 +7,8 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:provider/provider.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/status.dart' as status;
 
 class CreatedMapWidget extends StatefulWidget {
   const CreatedMapWidget({Key? key}) : super(key: key);
@@ -18,13 +20,22 @@ class CreatedMapWidget extends StatefulWidget {
 class _CreatedMapWidgetState extends State<CreatedMapWidget> {
   double zoom = 10.0;
 
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   final channel = IOWebSocketChannel.connect("ws://172.28.14.87:8765");
+
+  //   // channel.stream.listen((message) {
+  //   //   Provider.of<MainProvider>(context).loadData();
+  //   // });
+  // }
+
   @override
   Widget build(BuildContext context) {
     final locationProvider = Provider.of<LocationProvider>(context);
     final mainProvider = Provider.of<MainProvider>(context);
     return Container(
-      decoration:
-          BoxDecoration(border: Border.all(width: 1, color: Colors.blue)),
       child: Stack(
         children: [
           FlutterMap(
@@ -69,8 +80,8 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                 markers: mainProvider.taxData!.data!
                     .map(
                       (e) => Marker(
-                        point:
-                            LatLng(double.parse(e.lng!), double.parse(e.lat!)),
+                        point: LatLng(double.parse(e.locations!.split(",")[1]),
+                            double.parse(e.locations!.split(",")[0])),
                         builder: (ctx) => InkWell(
                           onTap: () {
                             showAnimatedDialog(
@@ -87,11 +98,11 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width /
-                                              3,
+                                              2,
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height /
-                                              3,
+                                              1.2,
                                           margin: const EdgeInsets.all(8.0),
                                           padding: const EdgeInsets.all(20.0),
                                           decoration: BoxDecoration(
@@ -123,9 +134,10 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text("TIN:"),
                                                     Text(
-                                                      e.tIN!,
+                                                        "ເລກປະຈຳຕົວຜູ່ເສຍອາກອນ:"),
+                                                    Text(
+                                                      e.tin!,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -141,9 +153,9 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text("TaxpayerType:"),
+                                                    Text("ບາໂຄດ:"),
                                                     Text(
-                                                      e.taxpayerType!,
+                                                      e.barcode!,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -159,9 +171,9 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text("BusinessType:"),
+                                                    Text("ຊື່ວິສາຫະກິດ:"),
                                                     Text(
-                                                      e.businessType!,
+                                                      e.name!,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -177,9 +189,9 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text("BusinessName:"),
+                                                    Text("ຊື່ບ້ານ:"),
                                                     Text(
-                                                      e.businessName!,
+                                                      e.village!,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -195,9 +207,9 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text("OwnerName:"),
+                                                    Text("ປະເພດການຖືບັນຊີ:"),
                                                     Text(
-                                                      e.ownerName!,
+                                                      e.accType!,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -213,9 +225,10 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text("Province:"),
                                                     Text(
-                                                      e.province!,
+                                                        "ປະເພດອາກອນມຸນຄ່າເພີ່ມຂອງວິສາຫະກິດ:"),
+                                                    Text(
+                                                      e.taxType!,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -231,7 +244,188 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text("District:"),
+                                                    Text("ປະເພດທຸລະກິດ:"),
+                                                    Text(
+                                                      e.busType!,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("ປະເພດທຸລະກິດຫລັກ:"),
+                                                    Text(
+                                                      e.mainBusTpye!,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                        "ປະເພດທຸລະກິດ LSIC ຫຼັກ:"),
+                                                    Text(
+                                                      e.busTypeLSIC!,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("ວັນທີອອກ​ໃບ​ແຈ້ງ:"),
+                                                    Text(
+                                                      e.issueDate!,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("ປະເພດອາກອນ:"),
+                                                    Text(
+                                                      e.type!,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("ເຫດຜົນການຊຳລະ:"),
+                                                    Text(
+                                                      e.description!,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("ຈຳນວນເງິນ(ກີບ):"),
+                                                    Text(
+                                                      e.taxAmount!.toString(),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("ອາກອນຄົງຄ້າງ:"),
+                                                    Text(
+                                                      e.debitTax!.toString(),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("ສະຖານະ:"),
+                                                    Text(
+                                                      e.status!,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("ວັນທີຈ່າຍ:"),
+                                                    Text(
+                                                      e.dates!,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("ເມືອງ:"),
                                                     Text(
                                                       e.district!,
                                                       style: TextStyle(
@@ -241,6 +435,24 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                   ],
                                                 ),
                                               ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("ແຂວງ:"),
+                                                    Text(
+                                                      e.province!,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
                                             ],
                                           ),
                                         ),
@@ -267,7 +479,7 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                             );
                           },
                           child: Tooltip(
-                            message: "${e.businessName}",
+                            message: "${e.name}",
                             decoration: BoxDecoration(color: Colors.blue),
                             padding: EdgeInsets.all(5),
                             textStyle: TextStyle(color: Colors.white),
@@ -277,7 +489,11 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                             //     borderRadius: BorderRadius.circular(10)),
                             child: Icon(
                               Icons.location_on,
-                              color: Colors.red,
+                              color: e.statusCode == 0
+                                  ? Colors.red
+                                  : e.statusCode == 1
+                                      ? Colors.yellow
+                                      : Colors.green,
                               size: 25.0,
                             ),
                           ),
@@ -288,6 +504,63 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
               ),
             ],
           ),
+          Positioned(
+              top: 16,
+              left: 16,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.circle,
+                        color: Colors.red,
+                        size: 15,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "ຍັງບໍ່ແຈ້ງອາກອນ",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.circle,
+                        color: Colors.yellow,
+                        size: 15,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "ຍັງບໍ່ຈ່າຍ",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.circle,
+                        color: Colors.green,
+                        size: 15,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "ຈ່າຍແລ້ວ",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ],
+              )),
           Positioned(
               right: 16,
               bottom: 20,
