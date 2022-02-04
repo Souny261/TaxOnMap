@@ -1,4 +1,5 @@
 // import 'package:easy_tax_map/helper/Laoder.dart';
+import 'package:easy_tax_map/helper/Laoder.dart';
 import 'package:easy_tax_map/provider/LocationProvider.dart';
 import 'package:easy_tax_map/provider/MainProvider.dart';
 import 'package:easy_tax_map/widgets/zoombuttons_plugin_option.dart';
@@ -20,6 +21,7 @@ class CreatedMapWidget extends StatefulWidget {
 
 class _CreatedMapWidgetState extends State<CreatedMapWidget> {
   double zoom = 10.0;
+  Helpers _helpers = Helpers();
 
   @override
   void initState() {
@@ -31,8 +33,7 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
     // });
 
     channel.stream.listen((message) {
-      
-      Provider.of<MainProvider>(context,listen: false).loadData();
+      Provider.of<MainProvider>(context, listen: false).loadData();
       print("success");
     });
   }
@@ -361,7 +362,9 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                   children: [
                                                     Text("ຈຳນວນເງິນ(ກີບ):"),
                                                     Text(
-                                                      e.taxAmount!.toString(),
+                                                      _helpers.customCurrency(e
+                                                          .taxAmount!
+                                                          .toString()),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -379,7 +382,9 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                   children: [
                                                     Text("ອາກອນຄົງຄ້າງ:"),
                                                     Text(
-                                                      e.debitTax!.toString(),
+                                                      _helpers.customCurrency(e
+                                                          .debitTax!
+                                                          .toString()),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -483,26 +488,38 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                               curve: Curves.fastOutSlowIn,
                               duration: Duration(seconds: 1),
                             );
+                          
                           },
                           child: Tooltip(
-                            message: "${e.name}",
-                            decoration: BoxDecoration(color: Colors.blue),
-                            padding: EdgeInsets.all(5),
-                            textStyle: TextStyle(color: Colors.white),
-                            // decoration: BoxDecoration(
-                            //     color: Color(int.parse(
-                            //         "${e.color}".replaceAll('#', '0xff'))),
-                            //     borderRadius: BorderRadius.circular(10)),
-                            child: Icon(
-                              Icons.location_on,
-                              color: e.statusCode == 0
-                                  ? Colors.red
+                              message: "${e.name}",
+                              decoration: BoxDecoration(color: Colors.blue),
+                              padding: EdgeInsets.all(5),
+                              textStyle: TextStyle(color: Colors.white),
+                              // decoration: BoxDecoration(
+                              //     color: Color(int.parse(
+                              //         "${e.color}".replaceAll('#', '0xff'))),
+                              //     borderRadius: BorderRadius.circular(10)),
+                              // child: Icon(
+                              //   Icons.location_on_sharp,
+                              //   color: e.statusCode == 0
+                              //       ? Colors.red
+                              //       : e.statusCode == 1
+                              //           ? Colors.yellow
+                              //           : Colors.green,
+                              //   size: 25.0,
+                              // ),
+                              child: e.statusCode == 0
+                                  ? Image.asset(
+                                      "assets/images/icons8-red.png",
+                                      width: 25,
+                                    )
                                   : e.statusCode == 1
-                                      ? Colors.yellow
-                                      : Colors.green,
-                              size: 25.0,
-                            ),
-                          ),
+                                      ? Image.asset(
+                                          "assets/images/icons8-warning.png",
+                                          width: 25)
+                                      : Image.asset(
+                                          "assets/images/icons8-done.png",
+                                          width: 25)),
                         ),
                       ),
                     )
@@ -511,61 +528,68 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
             ],
           ),
           Positioned(
-              top: 16,
+              top: 5,
               left: 16,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.red,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "ຍັງບໍ່ແຈ້ງອາກອນ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.yellow,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "ຍັງບໍ່ຈ່າຍ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.green,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "ຈ່າຍແລ້ວ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ],
+              child: Container(
+                // color: Colors.white,
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.white),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          color: Colors.red,
+                          size: 15,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "ຍັງບໍ່ແຈ້ງອາກອນ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          color: Colors.yellow,
+                          size: 15,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "ຍັງບໍ່ຈ່າຍ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          color: Colors.green,
+                          size: 15,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "ຈ່າຍແລ້ວ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               )),
           Positioned(
               right: 16,
