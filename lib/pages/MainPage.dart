@@ -23,6 +23,7 @@ class _MainPageState extends State<MainPage> {
         Provider.of<LocationProvider>(context, listen: false);
     final mainProvider = Provider.of<MainProvider>(context, listen: false);
     mainProvider.loadData();
+    // print("DATA"+mainProvider.taxData.toString());
     mainProvider.loadProvinceData();
     // mainProvider.setMapController();
     locationProvider.getCurentLocation().whenComplete(() {

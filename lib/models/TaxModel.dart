@@ -73,9 +73,9 @@ class Data {
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    barcode = json['Barcode'];
-    tin = json['Tin'];
-    name = json['Name'];
+    barcode = json['barcode'];
+    tin = json['tin'];
+    name = json['name'];
     village = json['village'];
     accType = json['AccType'];
     taxType = json['TaxType'];
@@ -100,9 +100,9 @@ class Data {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['Barcode'] = this.barcode;
-    data['Tin'] = this.tin;
-    data['Name'] = this.name;
+    data['barcode'] = this.barcode;
+    data['tin'] = this.tin;
+    data['name'] = this.name;
     data['village'] = this.village;
     data['AccType'] = this.accType;
     data['TaxType'] = this.taxType;

@@ -7,6 +7,9 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:provider/provider.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:socket_io/socket_io.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:socket_io_client/socket_io_client.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
@@ -24,7 +27,16 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final channel = IOWebSocketChannel.connect("ws://172.28.14.87:8765");
+    
+    // IO.Socket socket = IO.io("ws://172.28.14.87:8765",
+    //     OptionBuilder().setTransports(['websocket']).build());
+    // socket.onConnectError((data) {
+    //   print(data);
+    // });
+    // socket.onConnect((data) {
+    //   print("data" + data);
+    // });
+    // print("SOCKETID : " + socket.id.toString());
 
     // channel.stream.listen((message) {
     //   Provider.of<MainProvider>(context).loadData();
@@ -299,7 +311,7 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text("ວັນທີອອກ​ໃບ​ແຈ້ງ:"),
+                                                    Text("ວັນທີອອກໃບແຈ້ງ:"),
                                                     Text(
                                                       e.issueDate!,
                                                       style: TextStyle(

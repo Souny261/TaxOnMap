@@ -27,6 +27,7 @@ class MainProvider with ChangeNotifier {
     var data = json.decode(res.body);
     // print(data);
     taxData = TaxModel.fromJson(data);
+    // print(taxData);
     notifyListeners();
   }
 
