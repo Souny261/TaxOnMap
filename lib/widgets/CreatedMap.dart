@@ -1,4 +1,4 @@
-import 'package:easy_tax_map/helper/Laoder.dart';
+// import 'package:easy_tax_map/helper/Laoder.dart';
 import 'package:easy_tax_map/provider/LocationProvider.dart';
 import 'package:easy_tax_map/provider/MainProvider.dart';
 import 'package:easy_tax_map/widgets/zoombuttons_plugin_option.dart';
@@ -7,8 +7,9 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:provider/provider.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:web_socket_channel/html.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/status.dart' as status;
+// import 'package:web_socket_channel/status.dart' as status;
 
 class CreatedMapWidget extends StatefulWidget {
   const CreatedMapWidget({Key? key}) : super(key: key);
@@ -20,16 +21,21 @@ class CreatedMapWidget extends StatefulWidget {
 class _CreatedMapWidgetState extends State<CreatedMapWidget> {
   double zoom = 10.0;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   final channel = IOWebSocketChannel.connect("ws://172.28.14.87:8765");
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final channel = HtmlWebSocketChannel.connect("ws://172.28.14.87:8765");
+    // channel.stream.listen((open) {
+    //   print("connected");
+    // });
 
-  //   // channel.stream.listen((message) {
-  //   //   Provider.of<MainProvider>(context).loadData();
-  //   // });
-  // }
+    channel.stream.listen((message) {
+      
+      Provider.of<MainProvider>(context,listen: false).loadData();
+      print("success");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
