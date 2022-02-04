@@ -38,6 +38,10 @@ dependencies:
   # latlng: any
   provider: ^6.0.2
   flutter_animated_dialog: ^2.0.1
+  http: ^0.13.4
+  web_socket_channel: ^2.0.0
+  socket_io: ^1.0.1
+  socket_io_client: ^1.0.2
 
 dev_dependencies:
   flutter_test:

@@ -3,7 +3,7 @@ class TaxModel {
 
   TaxModel({this.data});
 
-  TaxModel.fromJson(dynamic json) {
+  TaxModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
@@ -23,65 +23,105 @@ class TaxModel {
 
 class Data {
   int? id;
-  String? provinceCode;
-  String? province;
+  String? barcode;
+  String? tin;
+  String? name;
+  String? village;
+  String? accType;
+  String? taxType;
+  String? busType;
+  String? mainBusTpye;
+  String? busTypeLSIC;
+  String? issueDate;
+  String? type;
+  String? description;
+  int? taxAmount;
+  int? debitTax;
+  int? statusCode;
+  String? status;
+  String? dates;
   String? districtCode;
   String? district;
-  String? taxpayerType;
-  String? tIN;
-  String? businessType;
-  Null? column9;
-  String? businessName;
-  String? ownerName;
-  String? lat;
-  String? lng;
+  String? provinceCode;
+  String? province;
+  String? locations;
 
   Data(
       {this.id,
-      this.provinceCode,
-      this.province,
+      this.barcode,
+      this.tin,
+      this.name,
+      this.village,
+      this.accType,
+      this.taxType,
+      this.busType,
+      this.mainBusTpye,
+      this.busTypeLSIC,
+      this.issueDate,
+      this.type,
+      this.description,
+      this.taxAmount,
+      this.debitTax,
+      this.statusCode,
+      this.status,
+      this.dates,
       this.districtCode,
       this.district,
-      this.taxpayerType,
-      this.tIN,
-      this.businessType,
-      this.column9,
-      this.businessName,
-      this.ownerName,
-      this.lat,
-      this.lng});
+      this.provinceCode,
+      this.province,
+      this.locations});
 
-  Data.fromJson(dynamic json) {
-    id = json['Id'];
+  Data.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    barcode = json['Barcode'];
+    tin = json['Tin'];
+    name = json['Name'];
+    village = json['village'];
+    accType = json['AccType'];
+    taxType = json['TaxType'];
+    busType = json['BusType'];
+    mainBusTpye = json['MainBusTpye'];
+    busTypeLSIC = json['BusTypeLSIC'];
+    issueDate = json['IssueDate'];
+    type = json['Type'];
+    description = json['Description'];
+    taxAmount = json['TaxAmount'];
+    debitTax = json['DebitTax'];
+    statusCode = json['StatusCode'];
+    status = json['Status'];
+    dates = json['Dates'];
+    districtCode = json['DistrictCode'];
+    district = json['District'];
     provinceCode = json['ProvinceCode'];
     province = json['Province'];
-    districtCode = json['districtCode'];
-    district = json['District'];
-    taxpayerType = json['TaxpayerType'];
-    tIN = json['TIN'];
-    businessType = json['BusinessType'];
-    column9 = json['Column9'];
-    businessName = json['BusinessName'];
-    ownerName = json['OwnerName'];
-    lat = json['Lat'];
-    lng = json['Lng'];
+    locations = json['Locations'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
+    data['id'] = this.id;
+    data['Barcode'] = this.barcode;
+    data['Tin'] = this.tin;
+    data['Name'] = this.name;
+    data['village'] = this.village;
+    data['AccType'] = this.accType;
+    data['TaxType'] = this.taxType;
+    data['BusType'] = this.busType;
+    data['MainBusTpye'] = this.mainBusTpye;
+    data['BusTypeLSIC'] = this.busTypeLSIC;
+    data['IssueDate'] = this.issueDate;
+    data['Type'] = this.type;
+    data['Description'] = this.description;
+    data['TaxAmount'] = this.taxAmount;
+    data['DebitTax'] = this.debitTax;
+    data['StatusCode'] = this.statusCode;
+    data['Status'] = this.status;
+    data['Dates'] = this.dates;
+    data['DistrictCode'] = this.districtCode;
+    data['District'] = this.district;
     data['ProvinceCode'] = this.provinceCode;
     data['Province'] = this.province;
-    data['districtCode'] = this.districtCode;
-    data['District'] = this.district;
-    data['TaxpayerType'] = this.taxpayerType;
-    data['TIN'] = this.tIN;
-    data['BusinessType'] = this.businessType;
-    data['Column9'] = this.column9;
-    data['BusinessName'] = this.businessName;
-    data['OwnerName'] = this.ownerName;
-    data['Lat'] = this.lat;
-    data['Lng'] = this.lng;
+    data['Locations'] = this.locations;
     return data;
   }
 }

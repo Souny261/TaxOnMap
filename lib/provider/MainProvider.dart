@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:http/http.dart' as http;
 
 class MainProvider with ChangeNotifier {
   TaxModel? taxData;
@@ -17,8 +18,14 @@ class MainProvider with ChangeNotifier {
   }
 
   Future loadData() async {
-    var data = json
-        .decode(await rootBundle.loadString('assets/chanthabouly_data.json'));
+    var url = Uri.parse("http://172.28.14.87:3000/EasyTax_2022");
+    // print(url);
+    var res = await http.get(url);
+    // print("DATA"+res.body);
+    // var data = json
+    //     .decode(await rootBundle.loadString('assets/chanthabouly_data.json'));
+    var data = json.decode(res.body);
+    // print(data);
     taxData = TaxModel.fromJson(data);
     notifyListeners();
   }
