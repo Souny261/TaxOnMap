@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PieChartModel {
-  int? value;
+  double? value;
   String? title;
   String? image;
   Color? color;

@@ -16,44 +16,102 @@ class _ProvinceDonutChartWidgetState extends State<ProvinceDonutChartWidget> {
   @override
   Widget build(BuildContext context) {
     final mainProvider = Provider.of<MainProvider>(context);
-    return Card(
-      shadowColor: Colors.blue,
-      child: Container(
-        padding: EdgeInsets.all(8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "ສັງລວມຂອງເມືອງ: ${mainProvider.titleDonutChart}",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
-            Expanded(
-              child: Container(
-                child: PieChart(
-                  PieChartData(
-                      pieTouchData:
-                          PieTouchData(touchCallback: (pieTouchResponse) {
-                        setState(() {
-                          if (pieTouchResponse.touchInput is FlLongPressEnd ||
-                              pieTouchResponse.touchInput is FlPanEnd) {
-                            touchedIndex = -1;
-                          } else {
-                            touchedIndex = pieTouchResponse.touchedSectionIndex;
-                          }
-                        });
-                      }),
-                      borderData: FlBorderData(
-                        show: false,
-                      ),
-                      sectionsSpace: 0,
-                      centerSpaceRadius: -20,
-                      sections: showingSections()),
+    return Container(
+      child: Stack(
+        children: [
+          PieChart(
+            PieChartData(
+                pieTouchData: PieTouchData(touchCallback: (pieTouchResponse) {
+                  setState(() {
+                    if (pieTouchResponse.touchInput is FlLongPressEnd ||
+                        pieTouchResponse.touchInput is FlPanEnd) {
+                      touchedIndex = -1;
+                    } else {
+                      touchedIndex = pieTouchResponse.touchedSectionIndex;
+                    }
+                  });
+                }),
+                borderData: FlBorderData(
+                  show: false,
                 ),
-              ),
-            )
-          ],
-        ),
+                sectionsSpace: 0,
+                centerSpaceRadius: 60,
+                sections: showingSections()),
+          ),
+          Positioned(
+              right: 16,
+              top: 8,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.circle,
+                        color: Colors.blue.shade900,
+                        size: 15,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "ບ້ານ",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.circle,
+                        color: Colors.green.shade900,
+                        size: 15,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "ບໍລິສັດຈຳກັດຜູ້ດຽວ",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.circle,
+                        color: Colors.yellow.shade900,
+                        size: 15,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "ວິສາຫະກິດບຸກຄົນ",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.circle,
+                        color: Colors.red.shade900,
+                        size: 15,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "ວິສາຫະກິດປະສົມ",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ],
+              ))
+        ],
       ),
     );
   }
@@ -68,7 +126,7 @@ class _ProvinceDonutChartWidgetState extends State<ProvinceDonutChartWidget> {
       final widgetSize = isTouched ? 55.0 : 40.0;
       return PieChartSectionData(
         color: e.color,
-        value: double.parse(e.value.toString()),
+        value: e.value,
         title: e.title,
         radius: radius,
         titleStyle: TextStyle(

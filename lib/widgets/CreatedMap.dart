@@ -1,4 +1,5 @@
 import 'package:easy_tax_map/helper/Laoder.dart';
+import 'package:easy_tax_map/pages/ReportPage.dart';
 import 'package:easy_tax_map/provider/LocationProvider.dart';
 import 'package:easy_tax_map/provider/MainProvider.dart';
 import 'package:easy_tax_map/widgets/zoombuttons_plugin_option.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:provider/provider.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:web_socket_channel/html.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
@@ -20,16 +22,20 @@ class CreatedMapWidget extends StatefulWidget {
 class _CreatedMapWidgetState extends State<CreatedMapWidget> {
   double zoom = 10.0;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   final channel = IOWebSocketChannel.connect("ws://172.28.14.87:8765");
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    var channel = HtmlWebSocketChannel.connect('ws://172.28.14.87:8765');
 
-  //   // channel.stream.listen((message) {
-  //   //   Provider.of<MainProvider>(context).loadData();
-  //   // });
-  // }
+    channel.stream.listen((message) {
+      channel.sink.add('received!');
+      channel.sink.close(status.goingAway);
+    });
+    // channel.stream.listen((message) {
+    //   Provider.of<MainProvider>(context).loadData();
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -507,59 +513,80 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
           Positioned(
               top: 16,
               left: 16,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.red,
-                        size: 15,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                padding: EdgeInsets.all(8),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          color: Colors.red,
+                          size: 15,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "ຍັງບໍ່ແຈ້ງອາກອນ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          color: Colors.yellow,
+                          size: 15,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "ຍັງບໍ່ຈ່າຍ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          color: Colors.green,
+                          size: 15,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "ຈ່າຍແລ້ວ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => ReportPage()));
+                      },
+                      color: Colors.blue,
+                      child: Text(
+                        "ລາຍງານ",
+                        style: TextStyle(color: Colors.white),
                       ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "ຍັງບໍ່ແຈ້ງອາກອນ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.yellow,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "ຍັງບໍ່ຈ່າຍ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.green,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "ຈ່າຍແລ້ວ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ],
+                    )
+                  ],
+                ),
               )),
           Positioned(
               right: 16,

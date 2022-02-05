@@ -52,15 +52,16 @@ class _MainPageState extends State<MainPage> {
                 ),
                 Expanded(
                   flex: 5,
-                  child: Column(
-                    children: [
-                      Expanded(child: CreatedChartWidget()),
-                      Expanded(
-                        flex: 3,
-                        child: CreatedMapWidget(),
-                      ),
-                    ],
-                  ),
+                  child: CreatedMapWidget(),
+                  // child: Column(
+                  //   children: [
+                  //     Expanded(child: CreatedChartWidget()),
+                  //     Expanded(
+                  //       flex: 3,
+                  //       child: CreatedMapWidget(),
+                  //     ),
+                  //   ],
+                  // ),
                 ),
               ],
             ),

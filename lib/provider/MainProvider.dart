@@ -16,7 +16,32 @@ class MainProvider with ChangeNotifier {
   MapController? mapController;
   String? titleDonutChart = "ຈັນທະບູລີ";
   String? titleLinchart = "ນະຄອນຫຼວງ";
-  List<PieChartModel> pieChartData = [];
+  List<PieChartModel> pieChartData = [
+    PieChartModel(
+      value: 5.26,
+      title: "5.26%",
+      image: "assets/images/icons8-Red.png",
+      color: Colors.blue.shade900,
+    ),
+    PieChartModel(
+      value: 10.53,
+      title: "10.53%",
+      image: "assets/images/icons8-Red.png",
+      color: Colors.green.shade900,
+    ),
+    PieChartModel(
+      value: 31.58,
+      title: "31.58%",
+      image: "assets/images/icons8-Red.png",
+      color: Colors.yellow.shade900,
+    ),
+    PieChartModel(
+      value: 52.63,
+      title: "52.63%",
+      image: "assets/images/icons8-Red.png",
+      color: Colors.red.shade900,
+    ),
+  ];
 
   Future setMapController() async {
     mapController = MapController();
@@ -42,38 +67,38 @@ class MainProvider with ChangeNotifier {
   }
 
   Future setInitialPieData() async {
-    pieChartData = [
-      PieChartModel(
-        value:
-            taxData!.data!.where((element) => element.statusCode == 0).length,
-        title: taxData!.data!
-            .where((element) => element.statusCode == 0)
-            .length
-            .toString(),
-        image: "assets/images/icons8-Red.png",
-        color: Colors.red,
-      ),
-      PieChartModel(
-        value:
-            taxData!.data!.where((element) => element.statusCode == 1).length,
-        title: taxData!.data!
-            .where((element) => element.statusCode == 1)
-            .length
-            .toString(),
-        image: "assets/images/icons8-warning.png",
-        color: Colors.yellow,
-      ),
-      PieChartModel(
-        value:
-            taxData!.data!.where((element) => element.statusCode == 2).length,
-        title: taxData!.data!
-            .where((element) => element.statusCode == 2)
-            .length
-            .toString(),
-        image: "assets/images/icons8-done.png",
-        color: Colors.green,
-      ),
-    ];
+    // pieChartData = [
+    //   PieChartModel(
+    //     value:
+    //         taxData!.data!.where((element) => element.statusCode == 0).length,
+    //     title: taxData!.data!
+    //         .where((element) => element.statusCode == 0)
+    //         .length
+    //         .toString(),
+    //     image: "assets/images/icons8-Red.png",
+    //     color: Colors.red,
+    //   ),
+    //   PieChartModel(
+    //     value:
+    //         taxData!.data!.where((element) => element.statusCode == 1).length,
+    //     title: taxData!.data!
+    //         .where((element) => element.statusCode == 1)
+    //         .length
+    //         .toString(),
+    //     image: "assets/images/icons8-warning.png",
+    //     color: Colors.yellow,
+    //   ),
+    //   PieChartModel(
+    //     value:
+    //         taxData!.data!.where((element) => element.statusCode == 2).length,
+    //     title: taxData!.data!
+    //         .where((element) => element.statusCode == 2)
+    //         .length
+    //         .toString(),
+    //     image: "assets/images/icons8-done.png",
+    //     color: Colors.green,
+    //   ),
+    // ];
     notifyListeners();
   }
 }
