@@ -39,6 +39,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     final locationProvider = Provider.of<LocationProvider>(context);
     final mainProvider = Provider.of<MainProvider>(context);
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: locationProvider.latLngPosition == null ||
               mainProvider.taxData == null
@@ -52,16 +53,16 @@ class _MainPageState extends State<MainPage> {
                 ),
                 Expanded(
                   flex: 5,
-                  child: CreatedMapWidget(),
-                  // child: Column(
-                  //   children: [
-                  //     Expanded(child: CreatedChartWidget()),
-                  //     Expanded(
-                  //       flex: 3,
-                  //       child: CreatedMapWidget(),
-                  //     ),
-                  //   ],
-                  // ),
+                  // child: CreatedMapWidget(),
+                  child: Column(
+                    children: [
+                      Expanded(child: CreatedChartWidget()),
+                      Expanded(
+                        flex: width < 1466 ? 2 : 3,
+                        child: CreatedMapWidget(),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

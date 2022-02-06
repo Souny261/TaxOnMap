@@ -43,6 +43,27 @@ class MainProvider with ChangeNotifier {
     ),
   ];
 
+  List<PieChartModel> pieProvinceChartData = [
+    PieChartModel(
+        value: 1000000000,
+        title: "60%",
+        image: "assets/images/icons8-done.png",
+        color: Colors.green.shade900,
+        label: "ຈ່າຍແລ້ວ"),
+    PieChartModel(
+        value: 500000000,
+        title: "35%",
+        image: "assets/images/icons8-warning.png",
+        color: Colors.yellow.shade900,
+        label: "ຍັງບໍ່ຈ່າຍ"),
+    PieChartModel(
+        value: 350000000,
+        title: "15%",
+        image: "assets/images/icons8-Red.png",
+        color: Colors.red.shade900,
+        label: "ຍັງບໍ່ແຈ້ງອາກອນ"),
+  ];
+
   Future setMapController() async {
     mapController = MapController();
     notifyListeners();

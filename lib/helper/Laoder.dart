@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class LoaderTwo extends StatefulWidget {
   final Color centralDotColor;
@@ -180,5 +181,13 @@ class Dot extends StatelessWidget {
         decoration: BoxDecoration(color: color, shape: BoxShape.circle),
       ),
     );
+  }
+}
+
+
+class Helpers {
+  final formatCurrency = NumberFormat("#,###", "en_US");
+  String customCurrency(String money) {
+    return formatCurrency.format(double.parse(money));
   }
 }

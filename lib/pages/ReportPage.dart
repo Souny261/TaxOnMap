@@ -15,6 +15,9 @@ class _ReportPageState extends State<ReportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("ລາຍງານ"),
+      ),
       body: SafeArea(
           child: Row(
         children: [
@@ -29,9 +32,7 @@ class _ReportPageState extends State<ReportPage> {
           Expanded(
             child: Column(
               children: [
-                Expanded(
-                  child: YearToYearChart()
-                ),
+                Expanded(child: YearToYearChart()),
                 Expanded(
                   child: TopTaxChart(),
                 ),

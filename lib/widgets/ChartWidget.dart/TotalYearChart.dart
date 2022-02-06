@@ -92,20 +92,24 @@ class _TotalYearchartState extends State<TotalYearchart> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             Expanded(
-              child: SfCartesianChart(primaryXAxis: CategoryAxis(),
+              child: SfCartesianChart(
+                  primaryXAxis: CategoryAxis(),
+                  tooltipBehavior:
+                      TooltipBehavior(enable: true, header: "ການຊຳລະ"),
                   // Palette colors
                   palette: <Color>[
                     Colors.blue
-                  ], series: <CartesianSeries>[
-                ColumnSeries<ChartData, String>(
-                    dataSource: chartData,
-                    markerSettings: MarkerSettings(isVisible: true),
-                    dataLabelSettings: DataLabelSettings(
-                        // Renders the data label
-                        isVisible: false),
-                    xValueMapper: (ChartData data, _) => data.x,
-                    yValueMapper: (ChartData data, _) => data.y1),
-              ]),
+                  ],
+                  series: <CartesianSeries>[
+                    ColumnSeries<ChartData, String>(
+                        dataSource: chartData,
+                        markerSettings: MarkerSettings(isVisible: true),
+                        dataLabelSettings: DataLabelSettings(
+                            // Renders the data label
+                            isVisible: false),
+                        xValueMapper: (ChartData data, _) => data.x,
+                        yValueMapper: (ChartData data, _) => data.y1),
+                  ]),
             ),
           ],
         ),

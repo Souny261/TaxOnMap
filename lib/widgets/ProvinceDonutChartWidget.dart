@@ -1,3 +1,4 @@
+import 'package:easy_tax_map/models/PieChartModel.dart';
 import 'package:easy_tax_map/provider/MainProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -5,7 +6,11 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class ProvinceDonutChartWidget extends StatefulWidget {
-  const ProvinceDonutChartWidget({Key? key}) : super(key: key);
+  final List<PieChartModel>? pieChartData;
+  final double? centerSpaceRadius;
+  const ProvinceDonutChartWidget(
+      {Key? key, this.pieChartData, this.centerSpaceRadius})
+      : super(key: key);
   @override
   _ProvinceDonutChartWidgetState createState() =>
       _ProvinceDonutChartWidgetState();
@@ -15,7 +20,7 @@ class _ProvinceDonutChartWidgetState extends State<ProvinceDonutChartWidget> {
   int? touchedIndex;
   @override
   Widget build(BuildContext context) {
-    final mainProvider = Provider.of<MainProvider>(context);
+    // final mainProvider = Provider.of<MainProvider>(context);
     return Container(
       child: Stack(
         children: [
@@ -35,93 +40,101 @@ class _ProvinceDonutChartWidgetState extends State<ProvinceDonutChartWidget> {
                   show: false,
                 ),
                 sectionsSpace: 0,
-                centerSpaceRadius: 60,
-                sections: showingSections()),
+                centerSpaceRadius: widget.centerSpaceRadius,
+                sections: showingSections(widget.pieChartData!)),
           ),
-          Positioned(
-              right: 16,
-              top: 8,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+          widget.centerSpaceRadius! < 0
+              ? Container()
+              : Positioned(
+                  right: 16,
+                  top: 8,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.blue.shade900,
-                        size: 15,
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            color: Colors.blue.shade900,
+                            size: 15,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "ບ້ານ",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 5,
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            color: Colors.green.shade900,
+                            size: 15,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "ບໍລິສັດຈຳກັດຜູ້ດຽວ",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "ບ້ານ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            color: Colors.yellow.shade900,
+                            size: 15,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "ວິສາຫະກິດບຸກຄົນ",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            color: Colors.red.shade900,
+                            size: 15,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "ວິສາຫະກິດປະສົມ",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
                     ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.green.shade900,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "ບໍລິສັດຈຳກັດຜູ້ດຽວ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.yellow.shade900,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "ວິສາຫະກິດບຸກຄົນ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.red.shade900,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "ວິສາຫະກິດປະສົມ",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ],
-              ))
+                  ))
         ],
       ),
     );
   }
 
-  List<PieChartSectionData> showingSections() {
-    final mainProvider = Provider.of<MainProvider>(context);
+  List<PieChartSectionData> showingSections(List<PieChartModel> pieChartData) {
+    // final mainProvider = Provider.of<MainProvider>(context);
 
-    return mainProvider.pieChartData.map((e) {
-      final isTouched = mainProvider.pieChartData.indexOf(e) == touchedIndex;
-      final fontSize = isTouched ? 20.0 : 16.0;
+    return pieChartData.map((e) {
+      final isTouched = pieChartData.indexOf(e) == touchedIndex;
+      double fontSize = isTouched
+          ? widget.centerSpaceRadius! < 0
+              ? 16
+              : 20.0
+          : widget.centerSpaceRadius! < 0
+              ? 13
+              : 16.0;
       final radius = isTouched ? 110.0 : 100.0;
       final widgetSize = isTouched ? 55.0 : 40.0;
       return PieChartSectionData(
@@ -131,7 +144,7 @@ class _ProvinceDonutChartWidgetState extends State<ProvinceDonutChartWidget> {
         radius: radius,
         titleStyle: TextStyle(
             fontSize: fontSize,
-            fontWeight: FontWeight.bold,
+            // fontWeight: FontWeight.bold,
             color: const Color(0xffffffff)),
         badgeWidget: _Badge(
           e.image!,

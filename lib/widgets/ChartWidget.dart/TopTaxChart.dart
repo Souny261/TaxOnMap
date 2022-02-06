@@ -70,6 +70,8 @@ class _TopTaxChartState extends State<TopTaxChart> {
             ),
             Expanded(
               child: SfCartesianChart(primaryXAxis: CategoryAxis(),
+               tooltipBehavior: TooltipBehavior(
+                      enable: true, header: "ການຊຳລະ"),
                   // Palette colors
                   palette: <Color>[
                     Colors.yellow.shade900

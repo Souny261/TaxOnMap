@@ -39,7 +39,7 @@ class _YearToYearChartState extends State<YearToYearChart> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildDefaultSplineChart();
+    return Card(child: _buildDefaultSplineChart());
   }
 
   List<ChartSampleData>? chartData;

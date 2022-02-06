@@ -1,3 +1,4 @@
+// import 'package:easy_tax_map/helper/Laoder.dart';
 import 'package:easy_tax_map/helper/Laoder.dart';
 import 'package:easy_tax_map/pages/ReportPage.dart';
 import 'package:easy_tax_map/provider/LocationProvider.dart';
@@ -10,7 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:web_socket_channel/html.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/status.dart' as status;
+// import 'package:web_socket_channel/status.dart' as status;
 
 class CreatedMapWidget extends StatefulWidget {
   const CreatedMapWidget({Key? key}) : super(key: key);
@@ -21,21 +22,17 @@ class CreatedMapWidget extends StatefulWidget {
 
 class _CreatedMapWidgetState extends State<CreatedMapWidget> {
   double zoom = 10.0;
+  Helpers _helpers = Helpers();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    var channel = HtmlWebSocketChannel.connect('ws://172.28.14.87:8765');
-
-    channel.stream.listen((message) {
-      channel.sink.add('received!');
-      channel.sink.close(status.goingAway);
-    });
-    // channel.stream.listen((message) {
-    //   Provider.of<MainProvider>(context).loadData();
-    // });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   final channel = HtmlWebSocketChannel.connect("ws://172.28.14.87:8765");
+  //   channel.stream.listen((message) {
+  //     Provider.of<MainProvider>(context, listen: false).loadData();
+  //     print("success");
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -361,7 +358,9 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                   children: [
                                                     Text("ຈຳນວນເງິນ(ກີບ):"),
                                                     Text(
-                                                      e.taxAmount!.toString(),
+                                                      _helpers.customCurrency(e
+                                                          .taxAmount!
+                                                          .toString()),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -379,7 +378,9 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                   children: [
                                                     Text("ອາກອນຄົງຄ້າງ:"),
                                                     Text(
-                                                      e.debitTax!.toString(),
+                                                      _helpers.customCurrency(e
+                                                          .debitTax!
+                                                          .toString()),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -485,24 +486,35 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                             );
                           },
                           child: Tooltip(
-                            message: "${e.name}",
-                            decoration: BoxDecoration(color: Colors.blue),
-                            padding: EdgeInsets.all(5),
-                            textStyle: TextStyle(color: Colors.white),
-                            // decoration: BoxDecoration(
-                            //     color: Color(int.parse(
-                            //         "${e.color}".replaceAll('#', '0xff'))),
-                            //     borderRadius: BorderRadius.circular(10)),
-                            child: Icon(
-                              Icons.location_on,
-                              color: e.statusCode == 0
-                                  ? Colors.red
+                              message: "${e.name}",
+                              decoration: BoxDecoration(color: Colors.blue),
+                              padding: EdgeInsets.all(5),
+                              textStyle: TextStyle(color: Colors.white),
+                              // decoration: BoxDecoration(
+                              //     color: Color(int.parse(
+                              //         "${e.color}".replaceAll('#', '0xff'))),
+                              //     borderRadius: BorderRadius.circular(10)),
+                              // child: Icon(
+                              //   Icons.location_on_sharp,
+                              //   color: e.statusCode == 0
+                              //       ? Colors.red
+                              //       : e.statusCode == 1
+                              //           ? Colors.yellow
+                              //           : Colors.green,
+                              //   size: 25.0,
+                              // ),
+                              child: e.statusCode == 0
+                                  ? Image.asset(
+                                      "assets/images/icons8-red.png",
+                                      width: 25,
+                                    )
                                   : e.statusCode == 1
-                                      ? Colors.yellow
-                                      : Colors.green,
-                              size: 25.0,
-                            ),
-                          ),
+                                      ? Image.asset(
+                                          "assets/images/icons8-warning.png",
+                                          width: 25)
+                                      : Image.asset(
+                                          "assets/images/icons8-done.png",
+                                          width: 25)),
                         ),
                       ),
                     )
@@ -511,14 +523,14 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
             ],
           ),
           Positioned(
-              top: 16,
+              top: 5,
               left: 16,
               child: Container(
+                // color: Colors.white,
+                padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                ),
-                padding: EdgeInsets.all(8),
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.white),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,5 +1,7 @@
+import 'package:easy_tax_map/provider/MainProvider.dart';
 import 'package:easy_tax_map/widgets/ProvinceDonutChartWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TotalTypeBusChart extends StatefulWidget {
   const TotalTypeBusChart({Key? key}) : super(key: key);
@@ -20,7 +22,11 @@ class _TotalTypeBusChartState extends State<TotalTypeBusChart> {
             "ສັງລວມອາກອນ ຕາມປະເພດທຸລະກິດ",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Expanded(child: ProvinceDonutChartWidget())
+          Expanded(
+              child: ProvinceDonutChartWidget(
+            pieChartData: Provider.of<MainProvider>(context).pieChartData,
+            centerSpaceRadius: 50,
+          ))
         ],
       ),
     ));
