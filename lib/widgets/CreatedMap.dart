@@ -24,15 +24,15 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
   double zoom = 10.0;
   Helpers _helpers = Helpers();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   final channel = HtmlWebSocketChannel.connect("ws://172.28.14.87:8765");
-  //   channel.stream.listen((message) {
-  //     Provider.of<MainProvider>(context, listen: false).loadData();
-  //     print("success");
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    final channel = HtmlWebSocketChannel.connect("ws://172.28.14.87:8765");
+    channel.stream.listen((message) {
+      Provider.of<MainProvider>(context, listen: false).loadData();
+      print("success");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
