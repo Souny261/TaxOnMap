@@ -505,7 +505,7 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                               // ),
                               child: e.statusCode == 0
                                   ? Image.asset(
-                                      "assets/images/icons8-red.png",
+                                      "assets/images/icons8-Red.png",
                                       width: 25,
                                     )
                                   : e.statusCode == 1
