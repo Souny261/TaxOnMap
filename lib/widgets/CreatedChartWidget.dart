@@ -16,7 +16,7 @@ class _CreatedChartWidgetState extends State<CreatedChartWidget> {
   Helpers _helpers = Helpers();
   @override
   Widget build(BuildContext context) {
-
+    final mainProvider = Provider.of<MainProvider>(context);
     return Container(
       padding: EdgeInsets.all(8),
       child: Row(
@@ -41,8 +41,7 @@ class _CreatedChartWidgetState extends State<CreatedChartWidget> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: Provider.of<MainProvider>(context)
-                                .pieProvinceChartData
+                            children: mainProvider.pieProvinceChartData
                                 .map(
                                   (e) => ListTile(
                                     contentPadding: EdgeInsets.all(0),
