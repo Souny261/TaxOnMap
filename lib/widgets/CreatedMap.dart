@@ -609,7 +609,7 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 400),
+                                              const EdgeInsets.only(top: 350),
                                           child: Container(
                                             child: Row(
                                               mainAxisAlignment:

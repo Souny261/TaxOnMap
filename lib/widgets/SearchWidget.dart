@@ -18,13 +18,11 @@ class SearchWidget extends StatefulWidget {
 class _SearchWidgetState extends State<SearchWidget> {
   TextEditingController _controller = TextEditingController();
   Helpers _helpers = Helpers();
-  // late String latlng;
+  String latlng = "";
   late var e;
   @override
   Widget build(BuildContext context) {
     final mainProvider = Provider.of<MainProvider>(context);
-    mainProvider.setDistrictData();
-    mainProvider.setProvinceData();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -400,12 +398,18 @@ class _SearchWidgetState extends State<SearchWidget> {
                     //   duration: Duration(seconds: 1),
                     // )
                     //     .whenComplete(() =>
-
+                   mainProvider.setSearchData(e);
                     mainProvider.moveMap(
                         e.lOCATION!.split(",")[0], e.lOCATION!.split(",")[1]);
-                    mainProvider.setSearchData(e);
+                        // setState(() {
+                        //   latlng = "kk";
+                        // });
+                    
                   } else {
                     mainProvider.loadData();
+                    // setState(() {
+                    //       latlng = "gg";
+                    //     });
                   }
                 }),
                 controller: _controller,
