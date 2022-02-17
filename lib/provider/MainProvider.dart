@@ -4,7 +4,9 @@ import 'dart:html';
 import 'package:easy_tax_map/api/DioService.dart';
 import 'package:easy_tax_map/models/PieChartModel.dart';
 import 'package:easy_tax_map/models/ProvineModel.dart';
-import 'package:easy_tax_map/models/TaxModel.dart';
+// import 'package:easy_tax_map/models/TaxModel.dart';
+import 'package:easy_tax_map/models/tax.dart';
+import 'package:easy_tax_map/models/taxdetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -12,20 +14,22 @@ import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 
 class MainProvider with ChangeNotifier {
-  TaxModel? taxData;
+  Tax? taxData;
+  TaxDetail? taxDetail;
+  String? tins;
   List districts = [
     // {
     //   "code": "0107",
-    //   "district": "ຫາດຊາຍຟອງ",
+    //   "district": "ຈັນທະຍູລີ",
     //   "lat": "17.996569134891963",
     //   "lng": "102.66422688231795",
-    //   "value": 4660000000,
+    //   "value": taxDa,
     // }
   ];
   ProvinceModel? provinceModel;
   MapController? mapController;
-  String? titleDonutChart = "";
-  String? titleLinchart = "";
+  String? titleDonutChart = "ຈັນທະບູລີ";
+  String? titleLinchart = "ນະຄອນຫຼວງວຽງຈັນ";
   List<PieChartModel> pieChartData = [
     PieChartModel(
       value: 5.26,
@@ -80,8 +84,32 @@ class MainProvider with ChangeNotifier {
   }
 
   Future loadData() async {
+    // easyTax_list_all
+    // taxData =
+    //     TaxModel.fromJson(await DioService.createDio(path: "EasyTax_2022"));
+    //     TaxModel.fromJson(await DioService.createDio(path: "easyTax_list_all"));
+    // var data = await DioService.createDio(path: "easyTax_list_all");
+    // data = data["data"].where((e)=>e["LOCATION"]!= null).toList();
+    // data = {"data":data};
+    // data = json.decode(data);
+    // print(data);
     taxData =
-        TaxModel.fromJson(await DioService.createDio(path: "EasyTax_2022"));
+        Tax.fromJson(await DioService.createDio(path: "easyTax_list_all"));
+    // print(taxData!.toJson());
+
+    notifyListeners();
+  }
+
+  Future loadSubData(tin) async {
+    tins = tin;
+    // var url = Uri.parse("https://graph.mmoney.la/easyTax_list");
+    // var res = await http.post(url, body: {"TIN": tin});
+
+    // print(res.body);
+    var data = await DioService.subDio(
+        path: "https://graph.mmoney.la/easyTax_list", tin: tin);
+    data["data"][0]["TOTAL_TAXES"] = data["data"][0]["TOTAL_TAXES"].toString();
+    taxDetail = TaxDetail.fromJson(data);
     notifyListeners();
   }
 
@@ -102,28 +130,36 @@ class MainProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setProvinceData(provinceCode) {
+  void setProvinceData() {
     List districtData = [];
-    var data =
-        taxData!.data!.where((e) => e.provinceCode == provinceCode).toList();
-    var province =
-        provinceModel!.data!.where((e) => e.code == provinceCode).first;
-    titleLinchart = province.provinceName;
-    List district = province.districtList!.toList();
-    for (var i = 0; i < district.length; i++) {
-      var e = district[i];
-      // var districtName = e.district;
-      var value = 0;
-      for (var j = 0; j < data.length; j++) {
-        //  print(data[j].provinceCode);
-        if ((data[j].provinceCode == provinceCode) &&
-            (data[j].districtCode == e.code) &&
-            (data[j].statusCode == 2)) {
-          value += data[j].taxAmount!;
-        }
-      }
-      districtData.add({"district": e.district, "value": value});
+    // var data =
+    //     taxData!.data!.where((e) => e.provinceCode == provinceCode).toList();
+    // var province =
+    //     provinceModel!.data!.where((e) => e.code == provinceCode).first;
+    // titleLinchart = province.provinceName;
+    // List district = province.districtList!.toList();
+    // for (var i = 0; i < district.length; i++) {
+    //   var e = district[i];
+    //   // var districtName = e.district;
+    //   var value = 0;
+    //   for (var j = 0; j < data.length; j++) {
+    //     //  print(data[j].provinceCode);
+    //     if ((data[j].provinceCode == provinceCode) &&
+    //         (data[j].districtCode == e.code) &&
+    //         (data[j].statusCode == 2)) {
+    //       value += data[j].taxAmount!;
+    //     }
+    //   }
+    //   districtData.add({"district": e.district, "value": value});
+    // }
+
+    var data = taxData!.data!.where((e) => e.statusNumber == 0).toList();
+    var sum = 0;
+    for (var i=0;i<data.length;i++){
+      sum+=data[i].totalPaid!;
     }
+    districtData.add({"district":"ຈັນທະບູລີ", "value": sum});
+
     districts = districtData;
 
     //**
@@ -194,42 +230,31 @@ class MainProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setDistrictData(districtCode) {
+  void setDistrictData() {
     double valuePaid = 0;
     double valueUnPaid = 0;
     double valueUnClear = 0;
     String titlePaidP = "0";
     String titleUnPaidP = "0";
     String titleUnClearP = "0";
-
-    var data =
-        taxData!.data!.where((e) => e.districtCode == districtCode).toList();
-    if (data.length > 0) {
-      titleDonutChart = data[0].district;
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].statusCode == 0) {
-          valueUnClear += data[i].taxAmount!;
-        } else if (data[i].statusCode == 1) {
-          valueUnPaid += data[i].taxAmount!;
-        } else {
-          valuePaid += data[i].taxAmount!;
-        }
-      }
-      // valuePaid += 1000000000;
+    valuePaid = double.parse(taxData!.data!.where((e) => e.statusNumber == 0).toList().length.toString());
+    valueUnPaid = double.parse(taxData!.data!.where((e) => e.statusNumber! > 0).toList().length.toString());
+    valueUnClear = double.parse(taxData!.data!.where((e) => e.statusNumber! < 0).toList().length.toString());
+    //   // valuePaid += 1000000000;
       var total = valuePaid + valueUnPaid + valueUnClear;
       titlePaidP = ((valuePaid / total) * 100).toStringAsFixed(2).toString();
       titleUnPaidP =
           ((valueUnPaid / total) * 100).toStringAsFixed(2).toString();
       titleUnClearP =
           ((valueUnClear / total) * 100).toStringAsFixed(2).toString();
-    } else {
-      valuePaid = 0;
-      valueUnPaid = 0;
-      valueUnClear = 0;
-      titlePaidP = "0";
-      titleUnPaidP = "0";
-      titleUnClearP = "0";
-    }
+    // } else {
+    //   valuePaid = 0;
+    //   valueUnPaid = 0;
+    //   valueUnClear = 0;
+    //   titlePaidP = "0";
+    //   titleUnPaidP = "0";
+    //   titleUnClearP = "0";
+    // }
 
     pieProvinceChartData = [
       PieChartModel(

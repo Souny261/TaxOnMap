@@ -55,7 +55,7 @@ class _CreatedChartWidgetState extends State<CreatedChartWidget> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     subtitle: Text(
-                                        "ຈຳນວນ: ${_helpers.customCurrency(e.value.toString())}ກີບ"),
+                                        "ຈຳນວນ: ${_helpers.customCurrency(e.value.toString())}"),
                                   ),
                                 )
                                 .toList(),
