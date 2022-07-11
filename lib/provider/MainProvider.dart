@@ -95,6 +95,7 @@ class MainProvider with ChangeNotifier {
     // print(data);
     taxData =
         Tax.fromJson(await DioService.createDio(path: "easyTax_list_all"));
+        // taxData = taxData!.data!.where((e)=>e.lOCATION != null) as Tax?;
     // print(taxData!.toJson());
 
     notifyListeners();
@@ -159,6 +160,14 @@ class MainProvider with ChangeNotifier {
       sum+=data[i].totalPaid!;
     }
     districtData.add({"district":"ຈັນທະບູລີ", "value": sum});
+    districtData.add({"district":"ສີໂຄດຕະບອງ", "value": 0});
+    districtData.add({"district":"ສີສັດຕະນາກ", "value": 0});
+    districtData.add({"district":"ສັງທອງ", "value": 0});
+    districtData.add({"district":"ໄຊເສດຖາ", "value": 0});
+    districtData.add({"district":"ໄຊທານີ", "value": 0});
+    districtData.add({"district":"ນາໄຊທອງ", "value": 0});
+    districtData.add({"district":"ປາກງື່ມ", "value": 0});
+    districtData.add({"district":"ຫາດຊາຍຟອງ", "value": 0});
 
     districts = districtData;
 
@@ -241,12 +250,13 @@ class MainProvider with ChangeNotifier {
     valueUnPaid = double.parse(taxData!.data!.where((e) => e.statusNumber! > 0).toList().length.toString());
     valueUnClear = double.parse(taxData!.data!.where((e) => e.statusNumber! < 0).toList().length.toString());
     //   // valuePaid += 1000000000;
+
       var total = valuePaid + valueUnPaid + valueUnClear;
-      titlePaidP = ((valuePaid / total) * 100).toStringAsFixed(2).toString();
+      titlePaidP = ((valuePaid / total) * 100).toStringAsFixed(2).toString()+"%";
       titleUnPaidP =
-          ((valueUnPaid / total) * 100).toStringAsFixed(2).toString();
+          ((valueUnPaid / total) * 100).toStringAsFixed(2).toString()+"%";
       titleUnClearP =
-          ((valueUnClear / total) * 100).toStringAsFixed(2).toString();
+          ((valueUnClear / total) * 100).toStringAsFixed(2).toString()+"%";
     // } else {
     //   valuePaid = 0;
     //   valueUnPaid = 0;

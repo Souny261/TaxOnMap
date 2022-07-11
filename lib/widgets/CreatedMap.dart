@@ -27,11 +27,13 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
   double zoom = 10.0;
   Helpers _helpers = Helpers();
   var tin;
+  var isShowImage = true;
 
   @override
   void initState() {
     super.initState();
-    final channel = HtmlWebSocketChannel.connect("ws://172.28.14.87:8765");
+    // final channel = HtmlWebSocketChannel.connect("ws://172.28.14.87:8765");
+    final channel = HtmlWebSocketChannel.connect("wss://io.mmoney.la");
     channel.stream.listen((message) {
       Provider.of<MainProvider>(context, listen: false).loadData();
       Provider.of<MainProvider>(context, listen: false).loadSubData(tin);
@@ -198,6 +200,27 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                               .spaceBetween,
                                                       children: [
                                                         Text(
+                                                            "ຊື່:"),
+                                                        Text(
+                                                          data.tINNAME!,
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            4.0),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
                                                             "ເລກປະເພດກູ່ມຜູ່ເສຍອາກອນ:"),
                                                         Text(
                                                           data.tINTYPEGROUP!,
@@ -218,7 +241,7 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Text("ຍັງຄົງຄ້າງ:"),
+                                                        Text("ຈຳນວນທີ່ຕ້ອງຈ່າຍທັງໝົດ:"),
                                                         Text(
                                                           _helpers.customCurrency(
                                                               data.tOTALTAXES !=
@@ -551,12 +574,12 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                 top: MediaQuery.of(context)
                                                         .size
                                                         .height /
-                                                    3.7,
+                                                    3.3,
                                                 left: MediaQuery.of(context)
                                                         .size
                                                         .width /
-                                                    3.8),
-                                            child: ListView.builder(
+                                                    3.7),
+                                            child: data.bARCODES!.length >0? ListView.builder(
                                                 itemCount: data.bARCODES != null
                                                     ? data.bARCODES!.length
                                                     : 0,
@@ -604,12 +627,12 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                       ],
                                                     ),
                                                   );
-                                                }),
+                                                }):Text("ຍັງບໍ່ມີ"),
                                           ),
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 350),
+                                              const EdgeInsets.only(top: 265,left: 400),
                                           child: Container(
                                             child: Row(
                                               mainAxisAlignment:
@@ -618,7 +641,7 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                                                 Image.memory(
                                                     imageFromBase64String(
                                                         data.iMAGE!),
-                                                    height: 300),
+                                                    height: 250),
                                               ],
                                             ),
                                           ),
