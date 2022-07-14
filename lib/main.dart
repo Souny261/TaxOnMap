@@ -1,3 +1,4 @@
+import 'package:easy_tax_map/pages/LoginPage.dart';
 import 'package:easy_tax_map/pages/MainPage.dart';
 import 'package:easy_tax_map/provider/LocationProvider.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        '/': (context) => MainPage(),
+        '/': (context) => LoginPage(),
+        '/home': (context) => MainPage(),
       },
     );
   }

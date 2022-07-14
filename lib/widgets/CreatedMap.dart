@@ -108,589 +108,607 @@ class _CreatedMapWidgetState extends State<CreatedMapWidget> {
                 },
               ),
               MarkerLayerOptions(
-                markers: mainProvider.taxData!.data!
-                    .map(
-                      (e) => Marker(
-                        point: LatLng(
-                            double.parse(e.lOCATION!.split(",")[0].toString()),
-                            double.parse(e.lOCATION!.split(",")[1].toString())),
-                        builder: (ctx) => InkWell(
-                          onTap: () async {
-                            setState(() {
-                              tin = e.tIN;
-                            });
+                markers: mainProvider.taxData!.data == null
+                    ? []
+                    : mainProvider.taxData!.data!
+                        .map(
+                          (e) => Marker(
+                            point: LatLng(
+                                double.parse(
+                                    e.lOCATION!.split(",")[0].toString()),
+                                double.parse(
+                                    e.lOCATION!.split(",")[1].toString())),
+                            builder: (ctx) => InkWell(
+                              onTap: () async {
+                                setState(() {
+                                  tin = e.tIN;
+                                });
 
-                            await mainProvider.loadSubData(e.tIN);
-                            var data = mainProvider.taxDetail!.data![0];
-                            showAnimatedDialog(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (BuildContext context) {
-                                return Material(
-                                  type: MaterialType.transparency,
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    child: Stack(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                await mainProvider.loadSubData(e.tIN);
+                                var data = mainProvider.taxDetail!.data![0];
+                                showAnimatedDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext context) {
+                                    return Material(
+                                      type: MaterialType.transparency,
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        child: Stack(
                                           children: [
-                                            Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  2,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  1.2,
-                                              margin: const EdgeInsets.all(8.0),
-                                              padding:
-                                                  const EdgeInsets.all(20.0),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(15.0),
-                                                color: Colors.white,
-                                              ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "ລາຍລະອຽດ",
-                                                    style: TextStyle(
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  Divider(
-                                                    color: Colors.blue,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            4.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                            "ເລກປະຈຳຕົວຜູ່ເສຍອາກອນ:"),
-                                                        Text(
-                                                          data.tIN!,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            4.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                            "ຊື່:"),
-                                                        Text(
-                                                          data.tINNAME!,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            4.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                            "ເລກປະເພດກູ່ມຜູ່ເສຍອາກອນ:"),
-                                                        Text(
-                                                          data.tINTYPEGROUP!,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            4.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text("ຈຳນວນທີ່ຕ້ອງຈ່າຍທັງໝົດ:"),
-                                                        Text(
-                                                          _helpers.customCurrency(
-                                                              data.tOTALTAXES !=
-                                                                      ""
-                                                                  ? data
-                                                                      .tOTALTAXES!
-                                                                  : "0"),
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            4.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text("ສະຖານະ:"),
-                                                        Text(
-                                                          data.sTATUS!,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            4.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text("ຊຳລະແລ້ວ:"),
-                                                        Text(
-                                                          _helpers.customCurrency(
-                                                              data.totalPaid !=
-                                                                      null
-                                                                  ? data
-                                                                      .totalPaid!
-                                                                      .toString()
-                                                                  : "0.0"),
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            4.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text("ບາໂຄດ"),
-                                                        // Text(
-                                                        //   data.totalPaid!
-                                                        //       .toString(),
-                                                        //   style: TextStyle(
-                                                        //       fontWeight:
-                                                        //           FontWeight.bold),
-                                                        // ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text(
-                                                  //           "ປະເພດອາກອນມຸນຄ່າເພີ່ມຂອງວິສາຫະກິດ:"),
-                                                  //       Text(
-                                                  //         e.taxType!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ປະເພດທຸລະກິດ:"),
-                                                  //       Text(
-                                                  //         e.busType!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ປະເພດທຸລະກິດຫລັກ:"),
-                                                  //       Text(
-                                                  //         e.mainBusTpye!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text(
-                                                  //           "ປະເພດທຸລະກິດ LSIC ຫຼັກ:"),
-                                                  //       Text(
-                                                  //         e.busTypeLSIC!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ວັນທີອອກ​ໃບ​ແຈ້ງ:"),
-                                                  //       Text(
-                                                  //         e.issueDate!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ປະເພດອາກອນ:"),
-                                                  //       Text(
-                                                  //         e.type!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ເຫດຜົນການຊຳລະ:"),
-                                                  //       Text(
-                                                  //         e.description!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ຈຳນວນເງິນ(ກີບ):"),
-                                                  //       Text(
-                                                  //         _helpers.customCurrency(e
-                                                  //             .taxAmount!
-                                                  //             .toString()),
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ອາກອນຄົງຄ້າງ:"),
-                                                  //       Text(
-                                                  //         _helpers.customCurrency(e
-                                                  //             .debitTax!
-                                                  //             .toString()),
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ສະຖານະ:"),
-                                                  //       Text(
-                                                  //         e.status!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ວັນທີຈ່າຍ:"),
-                                                  //       Text(
-                                                  //         e.dates!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ເມືອງ:"),
-                                                  //       Text(
-                                                  //         e.district!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding:
-                                                  //       const EdgeInsets.all(4.0),
-                                                  //   child: Row(
-                                                  //     mainAxisAlignment:
-                                                  //         MainAxisAlignment
-                                                  //             .spaceBetween,
-                                                  //     children: [
-                                                  //       Text("ແຂວງ:"),
-                                                  //       Text(
-                                                  //         e.province!,
-                                                  //         style: TextStyle(
-                                                  //             fontWeight:
-                                                  //                 FontWeight.bold),
-                                                  //       ),
-                                                  //     ],
-                                                  //   ),
-                                                  // )
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Container(
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                top: MediaQuery.of(context)
-                                                        .size
-                                                        .height /
-                                                    3.3,
-                                                left: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    3.7),
-                                            child: data.bARCODES!.length >0? ListView.builder(
-                                                itemCount: data.bARCODES != null
-                                                    ? data.bARCODES!.length
-                                                    : 0,
-                                                itemBuilder:
-                                                    (BuildContext context,
-                                                        int index) {
-                                                  var item =
-                                                      data.bARCODES![index];
-                                                  return Container(
-                                                    child: Row(
-                                                      children: [
-                                                        Text(item.barcode!),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Text("ທັງໝົດ: "),
-                                                        Text(_helpers
-                                                            .customCurrency(item
-                                                                .total!
-                                                                .toString())),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Text("ຄົງຄ້າງ: "),
-                                                        Text(_helpers
-                                                            .customCurrency(item
-                                                                .debitTotal!
-                                                                .toString())),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Text(
-                                                          item.statusCode == 0
-                                                              ? "ຍັງບໍ່ທັນຈ່າຍ"
-                                                              : "ຈ່າຍແລ້ວ",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  item.statusCode ==
-                                                                          1
-                                                                      ? Colors
-                                                                          .green
-                                                                      : Colors
-                                                                          .red),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                }):Text("ຍັງບໍ່ມີ"),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 265,left: 400),
-                                          child: Container(
-                                            child: Row(
+                                            Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Image.memory(
-                                                    imageFromBase64String(
-                                                        data.iMAGE!),
-                                                    height: 250),
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      1.2,
+                                                  margin:
+                                                      const EdgeInsets.all(8.0),
+                                                  padding: const EdgeInsets.all(
+                                                      20.0),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                    color: Colors.white,
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        "ລາຍລະອຽດ",
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      Divider(
+                                                        color: Colors.blue,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(4.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                                "ເລກປະຈຳຕົວຜູ່ເສຍອາກອນ:"),
+                                                            Text(
+                                                              data.tIN!,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(4.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text("ຊື່:"),
+                                                            Text(
+                                                              data.tINNAME!,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(4.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                                "ເລກປະເພດກູ່ມຜູ່ເສຍອາກອນ:"),
+                                                            Text(
+                                                              data.tINTYPEGROUP!,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(4.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                                "ຈຳນວນທີ່ຕ້ອງຈ່າຍທັງໝົດ:"),
+                                                            Text(
+                                                              _helpers.customCurrency(
+                                                                  data.tOTALTAXES !=
+                                                                          ""
+                                                                      ? data
+                                                                          .tOTALTAXES!
+                                                                      : "0"),
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(4.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text("ສະຖານະ:"),
+                                                            Text(
+                                                              data.sTATUS!,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(4.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text("ຊຳລະແລ້ວ:"),
+                                                            Text(
+                                                              _helpers.customCurrency(
+                                                                  data.totalPaid !=
+                                                                          null
+                                                                      ? data
+                                                                          .totalPaid!
+                                                                          .toString()
+                                                                      : "0.0"),
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(4.0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text("ບາໂຄດ"),
+                                                            // Text(
+                                                            //   data.totalPaid!
+                                                            //       .toString(),
+                                                            //   style: TextStyle(
+                                                            //       fontWeight:
+                                                            //           FontWeight.bold),
+                                                            // ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text(
+                                                      //           "ປະເພດອາກອນມຸນຄ່າເພີ່ມຂອງວິສາຫະກິດ:"),
+                                                      //       Text(
+                                                      //         e.taxType!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ປະເພດທຸລະກິດ:"),
+                                                      //       Text(
+                                                      //         e.busType!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ປະເພດທຸລະກິດຫລັກ:"),
+                                                      //       Text(
+                                                      //         e.mainBusTpye!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text(
+                                                      //           "ປະເພດທຸລະກິດ LSIC ຫຼັກ:"),
+                                                      //       Text(
+                                                      //         e.busTypeLSIC!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ວັນທີອອກ​ໃບ​ແຈ້ງ:"),
+                                                      //       Text(
+                                                      //         e.issueDate!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ປະເພດອາກອນ:"),
+                                                      //       Text(
+                                                      //         e.type!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ເຫດຜົນການຊຳລະ:"),
+                                                      //       Text(
+                                                      //         e.description!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ຈຳນວນເງິນ(ກີບ):"),
+                                                      //       Text(
+                                                      //         _helpers.customCurrency(e
+                                                      //             .taxAmount!
+                                                      //             .toString()),
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ອາກອນຄົງຄ້າງ:"),
+                                                      //       Text(
+                                                      //         _helpers.customCurrency(e
+                                                      //             .debitTax!
+                                                      //             .toString()),
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ສະຖານະ:"),
+                                                      //       Text(
+                                                      //         e.status!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ວັນທີຈ່າຍ:"),
+                                                      //       Text(
+                                                      //         e.dates!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ເມືອງ:"),
+                                                      //       Text(
+                                                      //         e.district!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
+                                                      // Padding(
+                                                      //   padding:
+                                                      //       const EdgeInsets.all(4.0),
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment:
+                                                      //         MainAxisAlignment
+                                                      //             .spaceBetween,
+                                                      //     children: [
+                                                      //       Text("ແຂວງ:"),
+                                                      //       Text(
+                                                      //         e.province!,
+                                                      //         style: TextStyle(
+                                                      //             fontWeight:
+                                                      //                 FontWeight.bold),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // )
+                                                    ],
+                                                  ),
+                                                ),
                                               ],
                                             ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                            right: 8,
-                                            child: IconButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              icon: Icon(
-                                                Icons.cancel,
-                                                color: Colors.red,
-                                                size: 30,
+                                            Container(
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: MediaQuery.of(context)
+                                                            .size
+                                                            .height /
+                                                        3.3,
+                                                    left: MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        3.7),
+                                                child: data.bARCODES!.length > 0
+                                                    ? ListView.builder(
+                                                        itemCount:
+                                                            data.bARCODES !=
+                                                                    null
+                                                                ? data.bARCODES!
+                                                                    .length
+                                                                : 0,
+                                                        itemBuilder:
+                                                            (BuildContext
+                                                                    context,
+                                                                int index) {
+                                                          var item = data
+                                                              .bARCODES![index];
+                                                          return Container(
+                                                            child: Row(
+                                                              children: [
+                                                                Text(item
+                                                                    .barcode!),
+                                                                SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                Text(
+                                                                    "ທັງໝົດ: "),
+                                                                Text(_helpers
+                                                                    .customCurrency(item
+                                                                        .total!
+                                                                        .toString())),
+                                                                SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                Text(
+                                                                    "ຄົງຄ້າງ: "),
+                                                                Text(_helpers
+                                                                    .customCurrency(item
+                                                                        .debitTotal!
+                                                                        .toString())),
+                                                                SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                Text(
+                                                                  item.statusCode ==
+                                                                          0
+                                                                      ? "ຍັງບໍ່ທັນຈ່າຍ"
+                                                                      : "ຈ່າຍແລ້ວ",
+                                                                  style: TextStyle(
+                                                                      color: item.statusCode == 1
+                                                                          ? Colors
+                                                                              .green
+                                                                          : Colors
+                                                                              .red),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          );
+                                                        })
+                                                    : Text("ຍັງບໍ່ມີ"),
                                               ),
-                                            ))
-                                      ],
-                                    ),
-                                  ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 265, left: 400),
+                                              child: Container(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Image.memory(
+                                                        imageFromBase64String(
+                                                            data.iMAGE!),
+                                                        height: 250),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                                right: 8,
+                                                child: IconButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.cancel,
+                                                    color: Colors.red,
+                                                    size: 30,
+                                                  ),
+                                                ))
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  animationType:
+                                      DialogTransitionType.slideFromTop,
+                                  curve: Curves.fastOutSlowIn,
+                                  duration: Duration(seconds: 1),
                                 );
                               },
-                              animationType: DialogTransitionType.slideFromTop,
-                              curve: Curves.fastOutSlowIn,
-                              duration: Duration(seconds: 1),
-                            );
-                          },
-                          child: Tooltip(
-                              message: "${e.tINNAME}",
-                              decoration: BoxDecoration(color: Colors.blue),
-                              padding: EdgeInsets.all(5),
-                              textStyle: TextStyle(color: Colors.white),
-                              // decoration: BoxDecoration(
-                              //     color: Color(int.parse(
-                              //         "${e.color}".replaceAll('#', '0xff'))),
-                              //     borderRadius: BorderRadius.circular(10)),
-                              // child: Icon(
-                              //   Icons.location_on_sharp,
-                              //   color: e.statusCode == 0
-                              //       ? Colors.red
-                              //       : e.statusCode == 1
-                              //           ? Colors.yellow
-                              //           : Colors.green,
-                              //   size: 25.0,
-                              // ),
-                              child: getPin(e.statusNumber, e.tINTYPEGROUP)),
-                        ),
-                      ),
-                    )
-                    .toList(),
+                              child: Tooltip(
+                                  message: "${e.tINNAME}",
+                                  decoration: BoxDecoration(color: Colors.blue),
+                                  padding: EdgeInsets.all(5),
+                                  textStyle: TextStyle(color: Colors.white),
+                                  // decoration: BoxDecoration(
+                                  //     color: Color(int.parse(
+                                  //         "${e.color}".replaceAll('#', '0xff'))),
+                                  //     borderRadius: BorderRadius.circular(10)),
+                                  // child: Icon(
+                                  //   Icons.location_on_sharp,
+                                  //   color: e.statusCode == 0
+                                  //       ? Colors.red
+                                  //       : e.statusCode == 1
+                                  //           ? Colors.yellow
+                                  //           : Colors.green,
+                                  //   size: 25.0,
+                                  // ),
+                                  child:
+                                      getPin(e.statusNumber, e.tINTYPEGROUP)),
+                            ),
+                          ),
+                        )
+                        .toList(),
               ),
             ],
           ),

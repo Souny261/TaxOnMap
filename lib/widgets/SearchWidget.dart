@@ -438,6 +438,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                 itemCount: mainProvider.provinceModel!.data!.length,
                 itemBuilder: (context, index) {
                   ProvinceData data = mainProvider.provinceModel!.data![index];
+                  // print(data.provinceName);
                   return Card(
                     child: ExpansionTile(
                       onExpansionChanged: (value) {
@@ -478,7 +479,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                         size: 10,
                                       ),
                                       Text(e.code! == "0101"
-                                          ? "${mainProvider.taxData!.data!.where((element) => element.statusNumber! < 0).length.toString()}"
+                                          ? "${mainProvider.taxData?.data?.where((element) => element.statusNumber! < 0).length.toString() ?? 0}"
                                           : "0")
                                     ],
                                   ),
@@ -490,7 +491,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                         size: 10,
                                       ),
                                       Text(e.code! == "0101"
-                                          ? "${mainProvider.taxData!.data!.where((element) => element.statusNumber! > 0).length.toString()}"
+                                          ? "${mainProvider.taxData?.data?.where((element) => element.statusNumber! > 0).length.toString() ?? 0}"
                                           : "0")
                                     ],
                                   ),
@@ -502,7 +503,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                         size: 10,
                                       ),
                                       Text(e.code! == "0101"
-                                          ? "${mainProvider.taxData!.data!.where((element) => element.statusNumber == 0).length.toString()}"
+                                          ? "${mainProvider.taxData?.data?.where((element) => element.statusNumber == 0).length.toString() ?? 0}"
                                           : "0")
                                     ],
                                   )
