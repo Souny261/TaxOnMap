@@ -1,3 +1,4 @@
+import 'package:easy_tax_map/helper/Laoder.dart';
 import 'package:easy_tax_map/widgets/ChartWidget.dart/TotalYearChart.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -11,6 +12,7 @@ class TopTaxChart extends StatefulWidget {
 
 class _TopTaxChartState extends State<TopTaxChart> {
   List<ChartData> chartData = <ChartData>[];
+  Helpers _helpers = Helpers();
 
   List data = [
     {
@@ -50,7 +52,7 @@ class _TopTaxChartState extends State<TopTaxChart> {
         ChartData(
           x: element['label'],
           // y: element['value'],
-          y1: element['value'],
+          y1:element['value'] ,
         ),
       );
     });

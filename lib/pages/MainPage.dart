@@ -23,9 +23,11 @@ class _MainPageState extends State<MainPage> {
     final locationProvider =
         Provider.of<LocationProvider>(context, listen: false);
     final mainProvider = Provider.of<MainProvider>(context, listen: false);
-    mainProvider
-        .loadData()
-        .whenComplete(() => mainProvider.setInitialPieData());
+    mainProvider.loadData().whenComplete(() {
+      mainProvider.setInitialPieData();
+      mainProvider.setDistrictData();
+      mainProvider.setProvinceData();
+    });
     mainProvider.loadProvinceData();
     // mainProvider.setMapController();
     locationProvider.getCurentLocation().whenComplete(() {
@@ -59,6 +61,7 @@ class _MainPageState extends State<MainPage> {
                       Expanded(child: CreatedChartWidget()),
                       Expanded(
                         flex: width < 1466 ? 2 : 3,
+                        // flex: 2,
                         child: CreatedMapWidget(),
                       ),
                     ],

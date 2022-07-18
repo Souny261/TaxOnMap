@@ -135,7 +135,13 @@ class _ProvinceDonutChartWidgetState extends State<ProvinceDonutChartWidget> {
           : widget.centerSpaceRadius! < 0
               ? 13
               : 16.0;
-      final radius = isTouched ? 110.0 : 100.0;
+      final radius = isTouched
+          ? widget.centerSpaceRadius! < 0
+              ? 80.0
+              : 110.0
+          : widget.centerSpaceRadius! < 0
+              ? 70.0
+              : 100.0;
       final widgetSize = isTouched ? 55.0 : 40.0;
       return PieChartSectionData(
         color: e.color,

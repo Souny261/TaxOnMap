@@ -16,7 +16,7 @@ class _CreatedChartWidgetState extends State<CreatedChartWidget> {
   Helpers _helpers = Helpers();
   @override
   Widget build(BuildContext context) {
-
+    final mainProvider = Provider.of<MainProvider>(context);
     return Container(
       padding: EdgeInsets.all(8),
       child: Row(
@@ -32,7 +32,7 @@ class _CreatedChartWidgetState extends State<CreatedChartWidget> {
                       child: ProvinceDonutChartWidget(
                         pieChartData: Provider.of<MainProvider>(context)
                             .pieProvinceChartData,
-                        centerSpaceRadius: -35,
+                        centerSpaceRadius: -1,
                       ),
                     ),
                     Expanded(
@@ -41,8 +41,7 @@ class _CreatedChartWidgetState extends State<CreatedChartWidget> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: Provider.of<MainProvider>(context)
-                                .pieProvinceChartData
+                            children: mainProvider.pieProvinceChartData
                                 .map(
                                   (e) => ListTile(
                                     contentPadding: EdgeInsets.all(0),
@@ -56,7 +55,7 @@ class _CreatedChartWidgetState extends State<CreatedChartWidget> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     subtitle: Text(
-                                        "ຈຳນວນ: ${_helpers.customCurrency(e.value.toString())}ກີບ"),
+                                        "ຈຳນວນ: ${_helpers.customCurrency(e.value.toString())}"),
                                   ),
                                 )
                                 .toList(),
